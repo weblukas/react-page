@@ -1,0 +1,15 @@
+
+
+.logo-icon {
+    font-size: 4rem;
+}
+
+.toggle-menu-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-menu-button > *{
+    font-size: 2rem;
+}
