@@ -11,19 +11,30 @@ import useMediaQuery from "./hooks/useMediaQuery";
 import { DeviceSize } from "./responsive/DeviceSize";
 
 
+
+
 const Menu = styled.div `
     width: 100vw;
     background-color: #14142C;
     margin: 0;
 
-    .transition-enter {
+    .fade-appear {
+      opacity: 0;
+    }
+
+    .fade-appear.fade-appear-active {
+      opacity: 1;
+      trasition: opacity 300ms linear;
+    }
+
+    ${'' /* .transition-enter {
     opacity: 0.01;
     transform: translate(0, -10px);
   }
   .transition-enter-active {
     opacity: 1;
     transform: translate(0, 0);
-    transition: all 300ms ease-in;
+    transition: all 900ms ease-in;
   }
   .transition-exit {
     opacity: 1;
@@ -33,7 +44,7 @@ const Menu = styled.div `
     opacity: 0.01;
     transform: translate(0, 10px);
     transition: all 300ms ease-in;
-  } 
+  }  */}
 `
 
 const MobileNavList = styled.ul `
@@ -45,7 +56,7 @@ const MobileNavList = styled.ul `
 
 const MobileMenu = ({isMobile}) => {
     return (
-      <CSSTransition in={isMobile} timeout={200} classNames="transition">
+      <CSSTransition in={isMobile}  appear={true} timeout={300} classNames="fade" >
         <Menu>
             <MobileNavList>
             <NavLink to='/' className='nav-link'>
