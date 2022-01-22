@@ -2,6 +2,7 @@
 
 .logo-icon {
     font-size: 4rem;
+    color: #343360;
 }
 
 .toggle-menu-button {
@@ -12,4 +13,8 @@
 
 .toggle-menu-button > *{
     font-size: 2rem;
+}
+
+.nav-link {
+    color: #343360;
 }

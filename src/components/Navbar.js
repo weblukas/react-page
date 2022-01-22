@@ -5,94 +5,88 @@ import { GiStarSwirl } from "react-icons/gi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoX } from "react-icons/go";
 import { NavbarContainer } from "./styles/Navbar.styles";
-import { CSSTransition } from "react-transition-group";
+import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import useMediaQuery from "./hooks/useMediaQuery";
-import { DeviceSize } from "./responsive/DeviceSize";
+import Overlay from "./overlay/Overlay";
+// import { DeviceSize } from "./responsive/DeviceSize";
 
+const Menu = styled.div`
+  width: 60vw;
+  background-color: #fff;
+  margin: 0;
+  border-radius: 8px;
+  position: relative;
+`;
 
+const MobileNavList = styled.ul`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+`;
 
+const dropIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
-const Menu = styled.div `
-    width: 100vw;
-    background-color: #14142C;
-    margin: 0;
+const ModalBtn = styled.button`
+  color: #343360;
+  font-size: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
-    .fade-appear {
-      opacity: 0;
-    }
+  position: absolute;
+  top: 30px;
+  right: 30px;
+`;
 
-    .fade-appear.fade-appear-active {
-      opacity: 1;
-      trasition: opacity 300ms linear;
-    }
-
-    ${'' /* .transition-enter {
-    opacity: 0.01;
-    transform: translate(0, -10px);
-  }
-  .transition-enter-active {
-    opacity: 1;
-    transform: translate(0, 0);
-    transition: all 900ms ease-in;
-  }
-  .transition-exit {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-  .transition-exit-active {
-    opacity: 0.01;
-    transform: translate(0, 10px);
-    transition: all 300ms ease-in;
-  }  */}
-`
-
-const MobileNavList = styled.ul `
-    display: flex;
-    flex-direction: column;
-
-  
-`
-
-const MobileMenu = ({isMobile}) => {
-    return (
-      <CSSTransition in={isMobile}  appear={true} timeout={300} classNames="fade" >
-        <Menu>
-            <MobileNavList>
-            <NavLink to='/' className='nav-link'>
-                Home
-            </NavLink>
-            <NavLink to='/gallery' className='nav-link'>
-                Galery
-            </NavLink>
-            <NavLink to='/blog' className='nav-link'>
-                Blog
-            </NavLink>
-            </MobileNavList>
-        </Menu>
-        </CSSTransition>
-    )
-}
-
-
-
+const MobileMenu = ({ handleClick }) => {
+  return (
+    <Overlay>
+      <Menu
+        onClick={(e) => e.stopPropagation()}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <MobileNavList>
+          <NavLink to="/" className="nav-link">
+            Home
+          </NavLink>
+          <NavLink to="/gallery" className="nav-link">
+            Galery
+          </NavLink>
+          <NavLink to="/blog" className="nav-link">
+            Blog
+          </NavLink>
+        </MobileNavList>
+        <ModalBtn>
+          <GoX onClick={handleClick} />
+        </ModalBtn>
+      </Menu>
+    </Overlay>
+  );
+};
 
 export const NavLink = styled(Link)`
   padding: 2rem;
   text-decoration: none;
-  color: #fff;
+  color: #343360;
   font-size: 1.3rem;
 `;
 
 const Navbar = () => {
-  const [toggleBtn, setToggleBtn] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   //  const isMobile = useMediaQuery(`maxWidth: ${DeviceSize.mobile}`) - doesn't work
   const isMobile = useMediaQuery(`(max-width: 960px)`);
 
   const handleClick = () => {
-    setToggleBtn(!toggleBtn);
+    setOpenMobileMenu(!openMobileMenu);
   };
   return (
     <>
@@ -106,16 +100,25 @@ const Navbar = () => {
           </ul>
         ) : null}
         {isMobile ? (
-          <button className="toggle-menu-button" onClick={handleClick}>
-            {!toggleBtn ? <GiHamburgerMenu /> : <GoX />}
-          </button>
+          <motion.button
+            className="toggle-menu-button"
+            onClick={handleClick}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {!openMobileMenu ? <GiHamburgerMenu /> : <GoX />}
+          </motion.button>
         ) : null}
       </NavbarContainer>
-      {toggleBtn && isMobile ? (
+      <AnimatePresence initial={true} exitBeforeEnter={true} onExitComplete={()=> null}>
+      {openMobileMenu ? 
       
-          <MobileMenu isMobile={isMobile}/>
+      (
+        <MobileMenu isMobile={isMobile} handleClick={handleClick} />
+      )
       
-      ) : null}
+      : null}
+      </AnimatePresence>
     </>
   );
 };
