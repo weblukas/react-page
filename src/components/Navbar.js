@@ -1,78 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
 import "./Navbar.css";
-import { GiStarSwirl } from "react-icons/gi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GoX } from "react-icons/go";
-import { NavbarContainer } from "./styles/Navbar.styles";
-import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { FaDev } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import useMediaQuery from "./hooks/useMediaQuery";
-import Overlay from "./overlay/Overlay";
+import MobileMenu from "./MobileMenu";
+import MenuHamburger from "./MenuHamburger";
 // import { DeviceSize } from "./responsive/DeviceSize";
 
-const Menu = styled.div`
-  width: 60vw;
-  background-color: #fff;
-  margin: 0;
-  border-radius: 8px;
-  position: relative;
-`;
-
-const MobileNavList = styled.ul`
+const StyledNavbar = styled.div`
+  background: linear-gradient(to right, #f6f6f9, #7799f0);
+  color: #fff;
+  height: 100px;
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 `;
 
-const dropIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
-const ModalBtn = styled.button`
-  color: #343360;
-  font-size: 2rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  position: absolute;
-  top: 30px;
-  right: 30px;
-`;
-
-const MobileMenu = ({ handleClick }) => {
-  return (
-    <Overlay>
-      <Menu
-        onClick={(e) => e.stopPropagation()}
-        variants={dropIn}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <MobileNavList>
-          <NavLink to="/" className="nav-link">
-            Home
-          </NavLink>
-          <NavLink to="/gallery" className="nav-link">
-            Galery
-          </NavLink>
-          <NavLink to="/blog" className="nav-link">
-            Blog
-          </NavLink>
-        </MobileNavList>
-        <ModalBtn>
-          <GoX onClick={handleClick} />
-        </ModalBtn>
-      </Menu>
-    </Overlay>
-  );
-};
-
-export const NavLink = styled(Link)`
+const NavLink = styled(Link)`
   padding: 2rem;
   text-decoration: none;
   color: #343360;
@@ -90,8 +38,10 @@ const Navbar = () => {
   };
   return (
     <>
-      <NavbarContainer>
-        <GiStarSwirl className="logo-icon" />
+      <StyledNavbar>
+        <NavLink to="/">
+          <FaDev className="logo-icon" />
+        </NavLink>
         {!isMobile ? (
           <ul>
             <NavLink to="/">Home</NavLink>
@@ -100,24 +50,20 @@ const Navbar = () => {
           </ul>
         ) : null}
         {isMobile ? (
-          <motion.button
-            className="toggle-menu-button"
-            onClick={handleClick}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {!openMobileMenu ? <GiHamburgerMenu /> : <GoX />}
-          </motion.button>
+          <MenuHamburger
+            handleClick={handleClick}
+            openMobileMenu={openMobileMenu}
+          />
         ) : null}
-      </NavbarContainer>
-      <AnimatePresence initial={true} exitBeforeEnter={true} onExitComplete={()=> null}>
-      {openMobileMenu ? 
-      
-      (
-        <MobileMenu isMobile={isMobile} handleClick={handleClick} />
-      )
-      
-      : null}
+      </StyledNavbar>
+      <AnimatePresence
+        initial={true}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}
+      >
+        {openMobileMenu ? (
+          <MobileMenu isMobile={isMobile} handleClick={handleClick} />
+        ) : null}
       </AnimatePresence>
     </>
   );

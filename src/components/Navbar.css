@@ -1,20 +1,6 @@
 
-
 .logo-icon {
     font-size: 4rem;
-    color: #343360;
+    color: #df82d2;
 }
 
-.toggle-menu-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.toggle-menu-button > *{
-    font-size: 2rem;
-}
-
-.nav-link {
-    color: #343360;
-}
