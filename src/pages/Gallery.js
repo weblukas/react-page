@@ -6,7 +6,6 @@ const StyledGallery = styled.section`
   display: grid;
   align-items: center;
   justify-items: center;
- 
 
   .flex-container {
     display: flex;
@@ -38,7 +37,6 @@ const StyledGallery = styled.section`
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     box-shadow: 0 5px 40px #c4d2d6;
-    
   }
 `;
 
@@ -51,41 +49,39 @@ const Gallery = () => {
         <div className="img-container">
           <img src="images/photo1.png" alt="speaker" className="gallery-img" />
           <div>
-          <input
-            type="radio"
-            name="color"
-            value="color1"
-            checked={radio === "color1"}
-            onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-          />
+            <input
+              type="radio"
+              name="color"
+              value="color1"
+              checked={radio === "color1"}
+              onChange={(e) => {
+                setRadio(e.target.value);
+              }}
+            />
 
-          <input
-            type="radio"
-            name="color"
-            value="color2"
-            checked={radio === "color2"}
-            onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-          />
+            <input
+              type="radio"
+              name="color"
+              value="color2"
+              checked={radio === "color2"}
+              onChange={(e) => {
+                setRadio(e.target.value);
+              }}
+            />
 
-          <input
-            type="radio"
-            name="color"
-            value="color3"
-            checked={radio === "color3"}
-            onChange={(e) => {
-              setRadio(e.target.value);
-            }}
-          />
+            <input
+              type="radio"
+              name="color"
+              value="color3"
+              checked={radio === "color3"}
+              onChange={(e) => {
+                setRadio(e.target.value);
+              }}
+            />
           </div>
         </div>
         <div className="description-panel">
           <h1>Jbl Flip 6</h1>
-
-        
         </div>
       </div>
     </StyledGallery>

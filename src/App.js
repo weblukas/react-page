@@ -6,19 +6,16 @@ import Gallery from "./pages/Gallery";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
-
 function App() {
   return (
-    
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/gallery" element={<Gallery />} />
-        </Routes>
-      </div>
-    
+    <div className="App">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
+    </div>
   );
 }
 
