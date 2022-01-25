@@ -40,6 +40,47 @@ const StyledGallery = styled.section`
   }
 `;
 
+const StyledList = styled.li`
+     position: relative;
+  padding: 10px;
+  padding-left: 40px;
+  height: 30px;
+  list-style: none;
+  
+`
+
+const StyledLabel = styled.label`
+    list-style: none;
+
+`;
+
+const StyledInput = styled.input`
+ 
+  display: inline-block;
+  vertical-align: middle;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  left: -100px;
+  top: calc(50% - 15px);
+  cursor: pointer;
+
+`;
+
+const StyledDiv = styled.div`
+  position: relative;
+  width: 25px;
+  height: 25px;
+  left: -3px;
+  top: 2px;
+  border: 5px solid rgb(20, 33, 218);
+  opacity: 0;
+  border-radius: 5%;
+`
+
 const Gallery = () => {
   return (
     <StyledGallery>
@@ -50,34 +91,23 @@ const Gallery = () => {
         </div>
         <div className="description-panel">
           <h1>Jbl Flip 6</h1>
-         
-
-          <ul>
-            <li>
-              <input type="radio" id="f-option" name="selector" />
-              <label for="f-option">Pizza</label>
-
-              <div class="check"></div>
-            </li>
-
-            <li>
-              <input type="radio" id="s-option" name="selector" />
-              <label for="s-option">Bacon</label>
-
-              <div class="check">
-                <div class="inside"></div>
+          <div class="form-element">
+            <StyledList>
+              <StyledInput checked type="radio" name="color" value="color-1"/>
+              <StyledLabel></StyledLabel>
+              <div class="bullet">
+                <div class="line zero"></div>
               </div>
-            </li>
-
-            <li>
-              <input type="radio" id="t-option" name="selector" />
-              <label for="t-option">Cats</label>
-
-              <div class="check">
-                <div class="inside"></div>
-              </div>
-            </li>
-          </ul>
+            </StyledList>
+            <StyledList>
+              <StyledInput type="radio" name="color" value="color-1"/>
+              <StyledLabel></StyledLabel>
+              <StyledDiv>
+                <div class="line zero"></div>
+              </StyledDiv>
+            </StyledList>
+    
+          </div>
         </div>
       </div>
     </StyledGallery>
