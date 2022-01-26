@@ -11,6 +11,7 @@ const StyledMenu = styled.div`
   margin: 0;
   border-radius: 8px;
   position: relative;
+  z-index: 20;
 `;
 
 const MobileNavList = styled.ul`
@@ -46,6 +47,10 @@ const ModalBtn = styled.button`
 `;
 
 const MobileMenu = ({ handleClick }) => {
+
+  const hideModalMenu = ()=>{
+    console.log('klik');
+  }
   return (
     <Overlay>
       <StyledMenu
@@ -56,7 +61,7 @@ const MobileMenu = ({ handleClick }) => {
         exit="exit"
       >
         <MobileNavList>
-          <NavLink to="/" className="nav-link">
+          <NavLink to="/" className="nav-link" onClick={hideModalMenu}>
             Home
           </NavLink>
           <NavLink to="/gallery" className="nav-link">

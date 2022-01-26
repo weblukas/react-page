@@ -40,6 +40,51 @@ const StyledGallery = styled.section`
   }
 `;
 
+const StyledRadioContainer = styled.div`
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    
+    &>input{
+        opacity: 1;
+        margin: 1rem;
+        cursor: pointer;
+        
+        
+
+        
+        &::after {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            border-radius: 50%;
+            opacity: 0.4;
+            transform: translate(-4px, -34px);
+            z-index: 10;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: lightcoral;
+            opacity: 0;
+            border-radius: 50%;
+            transform: translate(-9px, -9px);
+            z-index: 5;
+        }
+
+        &:checked::before {
+            opacity: 0.4;
+            
+        }
+    }
+    
+`
+
 const Gallery = () => {
   const [radio, setRadio] = useState("color1");
   return (
@@ -48,7 +93,7 @@ const Gallery = () => {
       <div className="flex-container">
         <div className="img-container">
           <img src="images/photo1.png" alt="speaker" className="gallery-img" />
-          <div>
+          <StyledRadioContainer>
             <input
               type="radio"
               name="color"
@@ -78,7 +123,7 @@ const Gallery = () => {
                 setRadio(e.target.value);
               }}
             />
-          </div>
+          </StyledRadioContainer>
         </div>
         <div className="description-panel">
           <h1>Jbl Flip 6</h1>
