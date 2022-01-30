@@ -11,7 +11,7 @@ const StyledMenuHamburger = styled.button`
   cursor: pointer;
 `;
 
-const MenuHamburger = ({ handleClick, openMobileMenu }) => {
+const MenuHamburger = ({ handleClick, isMobileMenuOpen }) => {
   return (
     <StyledMenuHamburger
       as={motion.button}
@@ -19,7 +19,7 @@ const MenuHamburger = ({ handleClick, openMobileMenu }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
-      {!openMobileMenu ? <GiHamburgerMenu /> : <GoX />}
+      {!isMobileMenuOpen ? <GiHamburgerMenu /> : <GoX />}
     </StyledMenuHamburger>
   );
 };

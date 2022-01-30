@@ -8,7 +8,7 @@ import styled from "styled-components";
 import useMediaQuery from "./hooks/useMediaQuery";
 import MobileMenu from "./MobileMenu";
 import MenuHamburger from "./MenuHamburger";
-// import { DeviceSize } from "./responsive/DeviceSize";
+import { deviceSize } from "./responsive/deviceSize";
 
 const StyledNavbar = styled.div`
   background: linear-gradient(to right, #f6f6f9, #7799f0);
@@ -30,8 +30,8 @@ const NavLink = styled(Link)`
 const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
-  //  const isMobile = useMediaQuery(`maxWidth: ${DeviceSize.mobile}`) - doesn't work
-  const isMobile = useMediaQuery(`(max-width: 960px)`);
+   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`)
+  // const isMobile = useMediaQuery(`(max-width: 960px)`);
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);

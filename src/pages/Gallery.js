@@ -41,49 +41,53 @@ const StyledGallery = styled.section`
 `;
 
 const StyledRadioContainer = styled.div`
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    
-    &>input{
-        opacity: 1;
-        margin: 1rem;
-        cursor: pointer;
-        
-        
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+`;
 
-        
-        &::after {
-            content: '';
-            display: block;
-            width: 20px;
-            height: 20px;
-            background-color: green;
-            border-radius: 50%;
-            opacity: 0.4;
-            transform: translate(-4px, -34px);
-            z-index: 10;
-        }
+const StyledInput = styled.input`
+  margin: 1rem;
+  cursor: pointer;
 
-        &::before {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 30px;
-            background-color: lightcoral;
-            opacity: 0;
-            border-radius: 50%;
-            transform: translate(-9px, -9px);
-            z-index: 5;
-        }
+  &::after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    opacity: 1;
+    transform: translate(-4px, -34px);
+    z-index: 10;
+  }
 
-        &:checked::before {
-            opacity: 0.4;
-            
-        }
-    }
-    
-`
+  &:nth-child(1)::after {
+    background-color: black;
+  }
+
+  &:nth-child(2)::after {
+    background-color: red;
+  }
+
+  &:nth-child(3)::after {
+    background-color: grey;
+  }
+  &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    opacity: 0;
+    border-radius: 50%;
+    transform: translate(-9px, -9px);
+    z-index: 5;
+  }
+
+  &:checked::before {
+    opacity: 1;
+  }
+`;
 
 const Gallery = () => {
   const [radio, setRadio] = useState("color1");
@@ -94,7 +98,7 @@ const Gallery = () => {
         <div className="img-container">
           <img src="images/photo1.png" alt="speaker" className="gallery-img" />
           <StyledRadioContainer>
-            <input
+            <StyledInput
               type="radio"
               name="color"
               value="color1"
@@ -104,7 +108,7 @@ const Gallery = () => {
               }}
             />
 
-            <input
+            <StyledInput
               type="radio"
               name="color"
               value="color2"
@@ -114,7 +118,7 @@ const Gallery = () => {
               }}
             />
 
-            <input
+            <StyledInput
               type="radio"
               name="color"
               value="color3"

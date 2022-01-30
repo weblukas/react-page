@@ -5,10 +5,12 @@ import Blog from "./pages/Blog";
 import Gallery from "./pages/Gallery";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import GlobalStyles from "./components/styles/global";
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyles />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
