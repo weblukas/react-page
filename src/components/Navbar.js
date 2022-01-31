@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { FaDev } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import useMediaQuery from "./hooks/useMediaQuery";
+import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import MobileMenu from "./MobileMenu";
 import MenuHamburger from "./MenuHamburger";
-import { deviceSize } from "./responsive/deviceSize";
+import { deviceSize } from "../helpers/responsive/deviceSize";
 
 const StyledNavbar = styled.div`
   background: linear-gradient(to right, #f6f6f9, #7799f0);

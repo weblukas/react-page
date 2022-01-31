@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledGallery = styled.section`
@@ -72,6 +72,10 @@ const StyledInput = styled.input`
   &:nth-child(3)::after {
     background-color: grey;
   }
+
+  &:nth-child(4)::after {
+    background-color: #3d5367;
+  }
   &::before {
     content: "";
     display: block;
@@ -90,42 +94,66 @@ const StyledInput = styled.input`
 `;
 
 const Gallery = () => {
-  const [radio, setRadio] = useState("color1");
+  const [radio, setRadio] = useState("");
+  const [img, setImg] = useState("images/photo1.png");
+  // const isSelected = (value) => true;
+
+  useEffect(() => {
+    if (radio === "red") {
+      setImg("images/photo5.png");
+    } else if (radio === "blue") {
+      setImg("images/photo4.png");
+    } else if (radio === "grey") {
+      setImg("images/photo2.png");
+    } else if (radio === "black") {
+      setImg("images/photo1.png");
+    }
+  }, [radio]);
+
+  const handleChange = (e) => {
+    setRadio(e.target.value);
+  };
+
+  
+  // setting image according to checked radio btn
+
   return (
     <StyledGallery>
       <h1>Jbl speaker</h1>
       <div className="flex-container">
         <div className="img-container">
-          <img src="images/photo1.png" alt="speaker" className="gallery-img" />
+          <img src={img} alt="speaker" className="gallery-img" />
           <StyledRadioContainer>
             <StyledInput
               type="radio"
               name="color"
-              value="color1"
-              checked={radio === "color1"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="black"
+              defaultChecked="true"
+              // checked={isSelected("black")}
+              onChange={handleChange}
             />
 
             <StyledInput
               type="radio"
               name="color"
-              value="color2"
-              checked={radio === "color2"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="red"
+              // checked={isSelected("color2")}
+              onChange={handleChange}
             />
 
             <StyledInput
               type="radio"
               name="color"
-              value="color3"
-              checked={radio === "color3"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="grey"
+              // checked={isSelected("color3")}
+              onChange={handleChange}
+            />
+            <StyledInput
+              type="radio"
+              name="color"
+              value="blue"
+              // checked={isSelected("color3")}
+              onChange={handleChange}
             />
           </StyledRadioContainer>
         </div>
