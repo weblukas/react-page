@@ -1,5 +1,26 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Button from "../components/Button";
+import Image from "../components/Image";
+
+const StyledDescriptionPanel = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #c4d2d6;
+  color: #000;
+  font-size: 1.3rem;
+  width: 550px;
+  height: 590px;
+  margin-top: 20px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 5px 40px #c4d2d6;
+
+  .btn-container {
+    padding: 2rem;
+  }
+`;
 
 const StyledGallery = styled.section`
   margin-top: 5rem;
@@ -20,24 +41,27 @@ const StyledGallery = styled.section`
     border-bottom-left-radius: 8px;
     box-shadow: 5px 5px 40px #c4d2d6;
   }
-
   .gallery-img {
-    width: 700px;
+    width: 400px;
     position: absolute;
     top: 70px;
-    left: 20px;
+    left: 200px;
   }
 
-  .description-panel {
-    background-color: #c4d2d6;
-    color: #fff;
-    width: 550px;
-    height: 590px;
-    margin-top: 20px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    box-shadow: 0 5px 40px #c4d2d6;
+  .fade-in {
+    animation: 0.5s ease 0.5s normal forwards 1 appear;
+    opacity: 0;
   }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
 `;
 
 const StyledRadioContainer = styled.div`
@@ -66,11 +90,11 @@ const StyledInput = styled.input`
   }
 
   &:nth-child(2)::after {
-    background-color: red;
+    background-color: #e33a3f;
   }
 
   &:nth-child(3)::after {
-    background-color: grey;
+    background-color: #90ae9e;
   }
 
   &:nth-child(4)::after {
@@ -94,35 +118,41 @@ const StyledInput = styled.input`
 `;
 
 const Gallery = () => {
-  const [radio, setRadio] = useState("");
-  const [img, setImg] = useState("images/photo1.png");
-  // const isSelected = (value) => true;
+  const [radioValue, setRadio] = useState("black");
+  const [img, setImg] = useState(`images/${radioValue}.png`);
+  const [isSelected, setIsSelected] = useState(false);
+  // const isSelected = (radioValue) => true;
 
+  // setting image according to checked radioValue btn
   useEffect(() => {
-    if (radio === "red") {
-      setImg("images/photo5.png");
-    } else if (radio === "blue") {
-      setImg("images/photo4.png");
-    } else if (radio === "grey") {
-      setImg("images/photo2.png");
-    } else if (radio === "black") {
-      setImg("images/photo1.png");
-    }
-  }, [radio]);
+    setImg(`images/${radioValue}.png`);
+
+    // if (radioValue === "red") {
+    //   setImg("images/red.png")... possible approach
+  }, [radioValue]);
+  // wrzucasz radioValue jako dependecy bo odpalasz to kiedy się zmienia radioValue
 
   const handleChange = (e) => {
     setRadio(e.target.value);
+    setIsSelected(true);
+    // dodaj klasę z animacją w momencie handle change
   };
-
-  
-  // setting image according to checked radio btn
 
   return (
     <StyledGallery>
       <h1>Jbl speaker</h1>
       <div className="flex-container">
         <div className="img-container">
-          <img src={img} alt="speaker" className="gallery-img" />
+        <Image 
+          src={img}
+          isSelected={isSelected}
+          className={` gallery-img ${isSelected && "fade-in"}`}
+         />
+          {/* <img
+            src={img}
+            alt="speaker"
+            className={` gallery-img ${isSelected && "fade-in"}`}
+          /> */}
           <StyledRadioContainer>
             <StyledInput
               type="radio"
@@ -144,7 +174,7 @@ const Gallery = () => {
             <StyledInput
               type="radio"
               name="color"
-              value="grey"
+              value="green"
               // checked={isSelected("color3")}
               onChange={handleChange}
             />
@@ -157,9 +187,14 @@ const Gallery = () => {
             />
           </StyledRadioContainer>
         </div>
-        <div className="description-panel">
+        <StyledDescriptionPanel>
           <h1>Jbl Flip 6</h1>
-        </div>
+          <div className="btn-container">
+            <Button />
+            <span>Jbl Flip 6 {radioValue} color</span>
+            <h3>Price 699 zł</h3>
+          </div>
+        </StyledDescriptionPanel>
       </div>
     </StyledGallery>
   );
