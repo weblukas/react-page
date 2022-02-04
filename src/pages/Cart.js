@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CartPanel from "../components/CartPanel";
-
+import CartItemPanel from "../components/CartItemPanel";
+import { useSelector } from "react-redux";
 const StyledCart = styled.section`
   margin: 4rem auto;
   border-radius: 8px;
@@ -19,20 +19,22 @@ const StyledCart = styled.section`
     border-top-right-radius: 6px;
     padding: 1rem;
     border-bottom: 2px solid #aeaeae;
-    
   }
-
-
 `;
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
+
   return (
     <StyledCart>
       <div className="header">
         <h1>My Cart</h1>
         <span>699 zł</span>
       </div>
-      <CartPanel />
+      {cartItems.map((name)=>{
+        return <CartItemPanel name={name} />
+      })}
       
     </StyledCart>
   );

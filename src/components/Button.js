@@ -15,12 +15,13 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = () => {
+const Button = ({addItem}) => {
   return (
     <StyledButton
       as={motion.button}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
+      onClick={addItem}
     >
       Add to cart
     </StyledButton>

@@ -5,6 +5,7 @@ const StyledCartPanel = styled.div`
   background-color: #fff;
   width: 80%;
   margin: 1rem auto;
+  border: 1px solid grey;
   border-radius: 8px;
 
   display: grid;
@@ -38,11 +39,11 @@ const StyledCartPanel = styled.div`
   
 `;
 
-const CartPanel = () => {
+const CartItemPanel = ({name}) => {
   return (
     <StyledCartPanel>
       <div className="thumbnail"></div>
-      <h2 className="item-name">jbl speaker</h2>
+      <h2 className="item-name">{name}</h2>
       <div className="item-info">
         <p>color: </p>
         <p>price: </p>
@@ -56,4 +57,4 @@ const CartPanel = () => {
   );
 };
 
-export default CartPanel;
+export default CartItemPanel;
