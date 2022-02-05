@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const StyledCartPanel = styled.div`
   background-color: #fff;
@@ -39,11 +40,14 @@ const StyledCartPanel = styled.div`
   
 `;
 
-const CartItemPanel = ({name}) => {
+const CartItemPanel = () => {
+
+  const item = useSelector((state) => state.cartItems)
+  console.log(item);
   return (
     <StyledCartPanel>
       <div className="thumbnail"></div>
-      <h2 className="item-name">{name}</h2>
+      <h2 className="item-name">name</h2>
       <div className="item-info">
         <p>color: </p>
         <p>price: </p>

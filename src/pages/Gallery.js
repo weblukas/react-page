@@ -7,6 +7,8 @@ import Input from "../components/Input";
 import { addItems } from "../features/cartSlice";
 import storeItems from "../helpers/data";
 
+console.log(storeItems)
+
 const StyledDescriptionPanel = styled.section`
   display: flex;
   flex-direction: column;
@@ -80,12 +82,12 @@ const Gallery = () => {
 
   const addItem = ()=>{
     console.log('doddaj');
-    dispatch(addItems(radioValue))
+    dispatch(addItems({id: 1, name: 'google', description: 'lololo', price: 34}))
   }
 
   return (
-    <StyledGallery>
-      <h1>Jbl speaker</h1>
+
+  <StyledGallery>
       <div className="flex-container">
         <div className="img-container">
         <Image 
@@ -129,16 +131,21 @@ const Gallery = () => {
           </StyledRadioContainer>
         </div>
         <StyledDescriptionPanel>
-          <h1>Jbl Flip 6</h1>
+          <h1>sdfds</h1>
           <div className="btn-container">
             <Button addItem={addItem}/>
             {/* czy lepiej onClick={addItem} */}
             <span>Jbl Flip 6 {radioValue} color</span>
-            <h3>Price 699 zł</h3>
+            <h3>Price zł</h3>
           </div>
         </StyledDescriptionPanel>
       </div>
     </StyledGallery>
+   
+    
+
+
+  
   );
 };
 
