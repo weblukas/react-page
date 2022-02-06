@@ -24,7 +24,7 @@ const StyledCart = styled.section`
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems.name);
+  const {id, name, description, price} = cartItems
 
   return (
     <StyledCart>
@@ -32,7 +32,12 @@ const Cart = () => {
         <h1>My Cart</h1>
         <span>699 zł</span>
       </div>
-      <CartItemPanel />
+      <CartItemPanel
+        id={id}
+        name={name}
+        description={description}
+        price={price}
+       />
       
     </StyledCart>
   );

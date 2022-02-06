@@ -40,21 +40,21 @@ const StyledCartPanel = styled.div`
   
 `;
 
-const CartItemPanel = () => {
+const CartItemPanel = ({id, name, description, price}) => {
 
   const item = useSelector((state) => state.cartItems)
   console.log(item);
   return (
-    <StyledCartPanel>
+    <StyledCartPanel key={id}>
       <div className="thumbnail"></div>
-      <h2 className="item-name">name</h2>
+      <h2 className="item-name">{name}</h2>
       <div className="item-info">
-        <p>color: </p>
-        <p>price: </p>
+        <p>{description} </p>
+        <p>price: {price} </p>
       </div>
       <div className="item-amount">
         <button>+</button>
-        <div>1</div>
+        <div></div>
         <button>-</button>
       </div>
     </StyledCartPanel>

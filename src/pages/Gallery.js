@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Button";
@@ -85,9 +85,12 @@ const Gallery = () => {
     dispatch(addItems({id: 1, name: 'google', description: 'lololo', price: 34}))
   }
 
+   
   return (
+    storeItems.map(({id, name, price, description})=>{
 
-  <StyledGallery>
+      // if(addItemBtn.id)
+      return <StyledGallery key={id}>
       <div className="flex-container">
         <div className="img-container">
         <Image 
@@ -131,16 +134,19 @@ const Gallery = () => {
           </StyledRadioContainer>
         </div>
         <StyledDescriptionPanel>
-          <h1>sdfds</h1>
+          <h1>{name}</h1>
           <div className="btn-container">
-            <Button addItem={addItem}/>
+            <Button addItem={addItem} id={id} />
             {/* czy lepiej onClick={addItem} */}
             <span>Jbl Flip 6 {radioValue} color</span>
-            <h3>Price zł</h3>
+            <h3>{price} zł</h3>
+            <p>{description}</p>
           </div>
         </StyledDescriptionPanel>
       </div>
     </StyledGallery>
+    })
+  
    
     
 

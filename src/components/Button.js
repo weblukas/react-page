@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 const StyledButton = styled.button`
   width: 120px;
   height: 40px;
@@ -15,13 +16,19 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({addItem}) => {
+const Button = ({addItem, id}) => {
+
+  const addItemBtn = useRef();
+
+  console.log(addItemBtn)
   return (
     <StyledButton
       as={motion.button}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={addItem}
+      id={id}
+      ref={addItemBtn}
     >
       Add to cart
     </StyledButton>
