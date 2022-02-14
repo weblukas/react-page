@@ -61,6 +61,7 @@ const Gallery = () => {
   const [radioValue, setRadio] = useState("black");
   const [img, setImg] = useState(`images/${radioValue}.png`);
   const [isSelected, setIsSelected] = useState(false);
+  // const [newItem, setNewItem] = useState({id:0, name:'', price: 0, description: '', image: ''})
   // const isSelected = (radioValue) => true;
 
   // setting image according to checked radioValue btn
@@ -79,22 +80,30 @@ const Gallery = () => {
   };
 
   const dispatch = useDispatch();
-
-  const addItem = ()=>{
-    console.log('doddaj');
-    dispatch(addItems({id: 1, name: 'google', description: 'lololo', price: 34}))
+  
+  const fetchProduct = (id)=> storeItems.filter((item)=> item.id === id)
+  
+  const addItem = (id)=>{
+    const product = fetchProduct(id)
+    console.log('doddaj', product);
+    dispatch(addItems(product))
+    
   }
 
+   const getImagePath = (radioValue)=> (`images/${radioValue}.png`);
    
-  return (
-    storeItems.map(({id, name, price, description})=>{
 
-      // if(addItemBtn.id)
+  return (
+    storeItems.map(({id, name, price, description, image})=>{
+    
+       // image.map() renderuj inputy na podstawie images jeśli jest
+       // jest kilka kolorów renderujesz inputy
+     
       return <StyledGallery key={id}>
       <div className="flex-container">
         <div className="img-container">
         <Image 
-          src={img}
+          src={getImagePath(radioValue)}
           isSelected={isSelected}
           className={` gallery-img ${isSelected && "fade-in"}`}
          />
@@ -136,7 +145,7 @@ const Gallery = () => {
         <StyledDescriptionPanel>
           <h1>{name}</h1>
           <div className="btn-container">
-            <Button addItem={addItem} id={id} />
+            <Button addItem={addItem} productId={id} />
             {/* czy lepiej onClick={addItem} */}
             <span>Jbl Flip 6 {radioValue} color</span>
             <h3>{price} zł</h3>

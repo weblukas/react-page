@@ -16,19 +16,24 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({addItem, id}) => {
+const Button = ({addItem, productId}) => {
 
-  const addItemBtn = useRef();
+  // const addItemBtn = useRef(passRef);
 
-  console.log(addItemBtn)
+  // console.log(addItemBtn)
+
+  const handleClick = ()=>{
+    addItem(productId)
+  }
   return (
     <StyledButton
       as={motion.button}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      onClick={addItem}
-      id={id}
-      ref={addItemBtn}
+      onClick={handleClick}
+      id={productId}
+      
+      // ref={addItemBtn}
     >
       Add to cart
     </StyledButton>

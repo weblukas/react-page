@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 const StyledCartPanel = styled.div`
   background-color: #fff;
-  width: 80%;
+  width: 40%;
+  min-width: 500px;
   margin: 1rem auto;
   border: 1px solid grey;
   border-radius: 8px;
@@ -47,15 +48,15 @@ const CartItemPanel = ({id, name, description, price}) => {
   return (
     <StyledCartPanel key={id}>
       <div className="thumbnail"></div>
-      <h2 className="item-name">{name}</h2>
-      <div className="item-info">
-        <p>{description} </p>
-        <p>price: {price} </p>
-      </div>
+      <h2 className="item-name">Jbl flip 6</h2>
       <div className="item-amount">
         <button>+</button>
-        <div></div>
+          <div>1</div>
         <button>-</button>
+      </div>
+      <div className="item-info">
+       
+        <p>price: 124 zł </p>
       </div>
     </StyledCartPanel>
   );
