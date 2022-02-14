@@ -7,7 +7,7 @@ import Input from "../components/Input";
 import { addItems } from "../features/cartSlice";
 import storeItems from "../helpers/data";
 
-console.log(storeItems)
+console.log(storeItems);
 
 const StyledDescriptionPanel = styled.section`
   display: flex;
@@ -55,8 +55,6 @@ const StyledRadioContainer = styled.div`
   left: 2rem;
 `;
 
-
-
 const Gallery = () => {
   const [radioValue, setRadio] = useState("black");
   const [img, setImg] = useState(`images/${radioValue}.png`);
@@ -80,88 +78,79 @@ const Gallery = () => {
   };
 
   const dispatch = useDispatch();
-  
-  const fetchProduct = (id)=> storeItems.filter((item)=> item.id === id)
-  
-  const addItem = (id)=>{
-    const product = fetchProduct(id)
-    console.log('doddaj', product);
-    dispatch(addItems(product))
-    
-  }
 
-   const getImagePath = (radioValue)=> (`images/${radioValue}.png`);
-   
+  const fetchProduct = (id) => storeItems.filter((item) => item.id === id);
 
-  return (
-    storeItems.map(({id, name, price, description, image})=>{
-    
-       // image.map() renderuj inputy na podstawie images jeśli jest
-       // jest kilka kolorów renderujesz inputy
-     
-      return <StyledGallery key={id}>
-      <div className="flex-container">
-        <div className="img-container">
-        <Image 
-          src={getImagePath(radioValue)}
-          isSelected={isSelected}
-          className={` gallery-img ${isSelected && "fade-in"}`}
-         />
-        
-          <StyledRadioContainer>
-            <Input
-              type="radio"
-              name="color"
-              value="black"
-              defaultChecked="true"
-              // checked={isSelected("black")}
-              onChange={handleChange}
+  const addItem = (id) => {
+    const product = fetchProduct(id);
+    console.log("doddaj", product);
+    dispatch(addItems(product));
+  };
+
+  const getImagePath = (radioValue) => `images/${radioValue}.png`;
+
+  return storeItems.map(({ id, name, price, description, image }) => {
+    // image.map() renderuj inputy na podstawie images jeśli jest
+    // jest kilka kolorów renderujesz inputy
+
+    return (
+      <StyledGallery key={id}>
+        <div className="flex-container">
+          <div className="img-container">
+            <Image
+              src={getImagePath(radioValue)}
+              isSelected={isSelected}
+              className={` gallery-img ${isSelected && "fade-in"}`}
             />
 
-            <Input
-              type="radio"
-              name="color"
-              value="red"
-              // checked={isSelected("color2")}
-              onChange={handleChange}
-            />
+            <StyledRadioContainer>
+              <Input
+                type="radio"
+                name="color"
+                value="black"
+                defaultChecked="true"
+                // checked={isSelected("black")}
+                onChange={handleChange}
+              />
 
-            <Input
-              type="radio"
-              name="color"
-              value="green"
-              // checked={isSelected("color3")}
-              onChange={handleChange}
-            />
-            <Input
-              type="radio"
-              name="color"
-              value="blue"
-              // checked={isSelected("color3")}
-              onChange={handleChange}
-            />
-          </StyledRadioContainer>
-        </div>
-        <StyledDescriptionPanel>
-          <h1>{name}</h1>
-          <div className="btn-container">
-            <Button addItem={addItem} productId={id} />
-            {/* czy lepiej onClick={addItem} */}
-            <span>Jbl Flip 6 {radioValue} color</span>
-            <h3>{price} zł</h3>
-            <p>{description}</p>
+              <Input
+                type="radio"
+                name="color"
+                value="red"
+                // checked={isSelected("color2")}
+                onChange={handleChange}
+              />
+
+              <Input
+                type="radio"
+                name="color"
+                value="green"
+                // checked={isSelected("color3")}
+                onChange={handleChange}
+              />
+              <Input
+                type="radio"
+                name="color"
+                value="blue"
+                // checked={isSelected("color3")}
+                onChange={handleChange}
+              />
+            </StyledRadioContainer>
           </div>
-        </StyledDescriptionPanel>
-      </div>
-    </StyledGallery>
-    })
-  
-   
-    
-
-
-  
-  );
+          <StyledDescriptionPanel>
+            <h1>{name}</h1>
+            <div className="btn-container">
+              <Button addItem={addItem} productId={id} />
+              {/* czy lepiej onClick={addItem} */}
+              <span>Jbl Flip 6 {radioValue} color</span>
+              <h3>{price} zł</h3>
+              <p>{description}</p>
+            </div>
+          </StyledDescriptionPanel>
+        </div>
+      </StyledGallery>
+    );
+  });
 };
 
 export default Gallery;

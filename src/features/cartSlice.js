@@ -16,8 +16,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItems: (state, action) => {
+      // biblioteka immer działa under the hood i można mutować stan
+      // tu trochę więcej na ten temat: https://redux-toolkit.js.org/usage/immer-reducers
       state.cartItems.push(action.payload);
     },
+    removeItem: (state, action) => {},
   },
 });
 
