@@ -1,5 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import Button from "../components/Button";
+import Image from "../components/Image";
+import Input from "../components/Input";
+import { addItems } from "../features/cartSlice";
+import storeItems from "../helpers/data";
+
+console.log(storeItems)
+
+const StyledDescriptionPanel = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #c4d2d6;
+  color: #000;
+  font-size: 1.3rem;
+  width: 550px;
+  height: 590px;
+  margin-top: 20px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 5px 40px #c4d2d6;
+
+  .btn-container {
+    padding: 2rem;
+  }
+`;
 
 const StyledGallery = styled.section`
   margin-top: 5rem;
@@ -20,116 +47,120 @@ const StyledGallery = styled.section`
     border-bottom-left-radius: 8px;
     box-shadow: 5px 5px 40px #c4d2d6;
   }
-
-  .gallery-img {
-    width: 700px;
-    position: absolute;
-    top: 70px;
-    left: 20px;
-  }
-
-  .description-panel {
-    background-color: #c4d2d6;
-    color: #fff;
-    width: 550px;
-    height: 590px;
-    margin-top: 20px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    box-shadow: 0 5px 40px #c4d2d6;
-  }
 `;
 
 const StyledRadioContainer = styled.div`
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    
-    &>input{
-        opacity: 1;
-        margin: 1rem;
-        cursor: pointer;
-        
-        
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+`;
 
-        
-        &::after {
-            content: '';
-            display: block;
-            width: 20px;
-            height: 20px;
-            background-color: green;
-            border-radius: 50%;
-            opacity: 0.4;
-            transform: translate(-4px, -34px);
-            z-index: 10;
-        }
 
-        &::before {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 30px;
-            background-color: lightcoral;
-            opacity: 0;
-            border-radius: 50%;
-            transform: translate(-9px, -9px);
-            z-index: 5;
-        }
-
-        &:checked::before {
-            opacity: 0.4;
-            
-        }
-    }
-    
-`
 
 const Gallery = () => {
-  const [radio, setRadio] = useState("color1");
+  const [radioValue, setRadio] = useState("black");
+  const [img, setImg] = useState(`images/${radioValue}.png`);
+  const [isSelected, setIsSelected] = useState(false);
+  // const [newItem, setNewItem] = useState({id:0, name:'', price: 0, description: '', image: ''})
+  // const isSelected = (radioValue) => true;
+
+  // setting image according to checked radioValue btn
+  useEffect(() => {
+    setImg(`images/${radioValue}.png`);
+
+    // if (radioValue === "red") {
+    //   setImg("images/red.png")... possible approach
+  }, [radioValue]);
+  // wrzucasz radioValue jako dependecy bo odpalasz to kiedy się zmienia radioValue
+
+  const handleChange = (e) => {
+    setRadio(e.target.value);
+    setIsSelected(true);
+    // dodaj klasę z animacją w momencie handle change
+  };
+
+  const dispatch = useDispatch();
+  
+  const fetchProduct = (id)=> storeItems.filter((item)=> item.id === id)
+  
+  const addItem = (id)=>{
+    const product = fetchProduct(id)
+    console.log('doddaj', product);
+    dispatch(addItems(product))
+    
+  }
+
+   const getImagePath = (radioValue)=> (`images/${radioValue}.png`);
+   
+
   return (
-    <StyledGallery>
-      <h1>Jbl speaker</h1>
+    storeItems.map(({id, name, price, description, image})=>{
+    
+       // image.map() renderuj inputy na podstawie images jeśli jest
+       // jest kilka kolorów renderujesz inputy
+     
+      return <StyledGallery key={id}>
       <div className="flex-container">
         <div className="img-container">
-          <img src="images/photo1.png" alt="speaker" className="gallery-img" />
+        <Image 
+          src={getImagePath(radioValue)}
+          isSelected={isSelected}
+          className={` gallery-img ${isSelected && "fade-in"}`}
+         />
+        
           <StyledRadioContainer>
-            <input
+            <Input
               type="radio"
               name="color"
-              value="color1"
-              checked={radio === "color1"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="black"
+              defaultChecked="true"
+              // checked={isSelected("black")}
+              onChange={handleChange}
             />
 
-            <input
+            <Input
               type="radio"
               name="color"
-              value="color2"
-              checked={radio === "color2"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="red"
+              // checked={isSelected("color2")}
+              onChange={handleChange}
             />
 
-            <input
+            <Input
               type="radio"
               name="color"
-              value="color3"
-              checked={radio === "color3"}
-              onChange={(e) => {
-                setRadio(e.target.value);
-              }}
+              value="green"
+              // checked={isSelected("color3")}
+              onChange={handleChange}
+            />
+            <Input
+              type="radio"
+              name="color"
+              value="blue"
+              // checked={isSelected("color3")}
+              onChange={handleChange}
             />
           </StyledRadioContainer>
         </div>
-        <div className="description-panel">
-          <h1>Jbl Flip 6</h1>
-        </div>
+        <StyledDescriptionPanel>
+          <h1>{name}</h1>
+          <div className="btn-container">
+            <Button addItem={addItem} productId={id} />
+            {/* czy lepiej onClick={addItem} */}
+            <span>Jbl Flip 6 {radioValue} color</span>
+            <h3>{price} zł</h3>
+            <p>{description}</p>
+          </div>
+        </StyledDescriptionPanel>
       </div>
     </StyledGallery>
+    })
+  
+   
+    
+
+
+  
   );
 };
 
