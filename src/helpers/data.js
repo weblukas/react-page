@@ -3,7 +3,8 @@ const storeItems = [
         name: 'jbl speaker',
         price: 456,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        image: ["images/black.png", "images/green.png", "images/blue.png"]
+        image: "images/black.png",
+        imageOptions: ["images/green.png", "images/blue.png"]
     },
     {   id: 2,
         name: 'sony speaker',

@@ -1,28 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: [
-    {
-      id: 0,
-      name: "",
-      description: "",
-      price: 0,
-    },
-  ],
+  cartItems: [],
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItems: (state, action) => {
-      // biblioteka immer działa under the hood i można mutować stan
-      // tu trochę więcej na ten temat: https://redux-toolkit.js.org/usage/immer-reducers
+    addItem: (state, action) => {
       state.cartItems.push(action.payload);
     },
-    removeItem: (state, action) => {},
+    removeItem: (state, action) => {
+      state.cartItems.splice(action.payload, 1)
+    },
   },
 });
 
-export const { addItems } = cartSlice.actions;
+export const { addItem, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;

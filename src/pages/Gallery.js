@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Image from "../components/Image";
 import Input from "../components/Input";
-import { addItems } from "../features/cartSlice";
+import { addItem } from "../features/cartSlice";
 import storeItems from "../helpers/data";
-
-console.log(storeItems);
 
 const StyledDescriptionPanel = styled.section`
   display: flex;
@@ -78,13 +76,19 @@ const Gallery = () => {
   };
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const fetchProduct = (id) => storeItems.filter((item) => item.id === id);
+  const fetchProduct = (id) => storeItems.find((item) => item.id === id);
+  // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
 
-  const addItem = (id) => {
+  const handleAddItem = (id) => {
     const product = fetchProduct(id);
-    console.log("doddaj", product);
-    dispatch(addItems(product));
+
+    if (cartItems.includes(product)) {
+      return;
+    }
+
+    dispatch(addItem(product));
   };
 
   const getImagePath = (radioValue) => `images/${radioValue}.png`;
@@ -140,8 +144,8 @@ const Gallery = () => {
           <StyledDescriptionPanel>
             <h1>{name}</h1>
             <div className="btn-container">
-              <Button addItem={addItem} productId={id} />
-              {/* czy lepiej onClick={addItem} */}
+              <Button handleAddItem={handleAddItem} productId={id} />
+              {/* czy lepiej onClick={handleAddItem} */}
               <span>Jbl Flip 6 {radioValue} color</span>
               <h3>{price} zł</h3>
               <p>{description}</p>

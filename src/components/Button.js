@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+
 const StyledButton = styled.button`
   width: 120px;
   height: 40px;
@@ -16,14 +16,14 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({addItem, productId}) => {
+const Button = ({handleAddItem, productId}) => {
 
   // const addItemBtn = useRef(passRef);
 
   // console.log(addItemBtn)
 
   const handleClick = ()=>{
-    addItem(productId)
+    handleAddItem(productId)
   }
   return (
     <StyledButton

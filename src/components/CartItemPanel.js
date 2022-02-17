@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
-
+import { addItem, removeItem } from "../features/cartSlice";
 const StyledCartPanel = styled.div`
   background-color: #fff;
   width: 40%;
@@ -50,25 +50,36 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ id, name, price }) => {
-  // const item = useSelector((state) => state.cartItems)
-  // console.log(item, 'gdzie to jest');
+const CartItemPanel = ({ id, name, price, index }) => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  
+  const fetchSameProduct = (id) => cartItems.find((item) => item.id === id);
+  
+  const handleAddSameItem = () => {
+    const sameProduct = fetchSameProduct(id)
+    console.log(sameProduct, cartItems.length);
+    dispatch(addItem(sameProduct))
+  };
 
-  const removeFromCart = () => {};
+  const handleRemoveSameItem = () => {};
 
+  const handleRemoveItem = () => {
+    dispatch(removeItem(index));
+  };
   return (
     <StyledCartPanel key={id}>
       <div className="thumbnail"></div>
-      <h2 className="item-name">Jbl flip 6{name}</h2>
+      <h2 className="item-name">{name}</h2>
       <div className="item-amount">
-        <button>+</button>
+        <button onClick={handleRemoveSameItem}>-</button>
         <div>1</div>
-        <button>-</button>
+        <button onClick={handleAddSameItem}>+</button>
       </div>
       <div className="item-info">
-        <p>price: 124 zł {price}</p>
+        <p> zł {price}</p>
       </div>
-      <GoX className="deleteBtn" onClick={removeFromCart} />
+      <GoX className="deleteBtn" onClick={handleRemoveItem} />
     </StyledCartPanel>
   );
 };
