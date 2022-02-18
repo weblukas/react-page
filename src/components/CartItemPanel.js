@@ -6,9 +6,10 @@ import { addItem, removeItem } from "../features/cartSlice";
 const StyledCartPanel = styled.div`
   background-color: #fff;
   width: 40%;
+  height: 150px;
   min-width: 500px;
-  margin: 1rem auto;
-  border: 1px solid grey;
+  margin: 2rem auto;
+  box-shadow: 3px 3px 10px #333;
   border-radius: 8px;
   position: relative;
 
@@ -18,10 +19,9 @@ const StyledCartPanel = styled.div`
 
   .thumbnail {
     width: 100px;
-    height: 100px;
+    /* height: 100px; */
     margin: 20px;
-    background-color: aquamarine;
-    border-radius: 7px;
+    
   }
 
   .item-amount {
@@ -50,7 +50,7 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ id, name, price, index }) => {
+const CartItemPanel = ({ id, name, price, index, image }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   
@@ -69,7 +69,9 @@ const CartItemPanel = ({ id, name, price, index }) => {
   };
   return (
     <StyledCartPanel key={id}>
-      <div className="thumbnail"></div>
+      <div>
+      <img src={image} alt='thumbnail' className="thumbnail" />
+      </div>
       <h2 className="item-name">{name}</h2>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>

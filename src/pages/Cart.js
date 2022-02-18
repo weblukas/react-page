@@ -10,10 +10,10 @@ const Cart = () => {
       <h1>cart</h1>
 
       {cartItems.length > 0 &&
-        cartItems.map(({ id, name, price }, index) => {
-          console.log(index, id);
+        cartItems.map(({ id, name, price, image }, index) => {
+          
           return (
-            <CartItemPanel id={id} name={name} price={price} index={index} />
+            <CartItemPanel id={id} name={name} price={price} index={index} image={image}/>
           );
         })}
     </>
