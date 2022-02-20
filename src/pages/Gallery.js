@@ -118,23 +118,23 @@ const Gallery = () => {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
       >
-        {storeItems.map(({ id, name, price, description, image }) => {
+        {storeItems.map(({ id, name, price, description, images }) => {
           // image.map() renderuj inputy na podstawie images jeśli jest
           // jest kilka kolorów renderujesz inputy
-          console.log(storeItems[1].image, "dupa");
+          // console.log(storeItems[1].image, "dupa");
           return (
             <SwiperSlide key={id}>
               <StyledGallery>
                 <div className="flex-container">
                   <div className="img-container">
                     <Image
-                      src={image}
+                      src={images}
                       isSelected={isSelected}
                       className={` gallery-img ${isSelected && "fade-in"}`}
                     />
 
                     <StyledRadioContainer>
-                      {storeItems[1].image.map((image) => {
+                      {images.map((image) => {
                         return (
                           <Input
                             type="radio"
@@ -147,7 +147,7 @@ const Gallery = () => {
                         );
                       })}
 
-                      <Input
+                      {/* <Input
                         type="radio"
                         name="color"
                         value="red"
@@ -168,7 +168,7 @@ const Gallery = () => {
                         value="blue"
                         // checked={isSelected("color3")}
                         onChange={handleChange}
-                      />
+                      /> */}
                     </StyledRadioContainer>
                   </div>
                   <StyledDescriptionPanel>
