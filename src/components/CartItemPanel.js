@@ -70,7 +70,7 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
     console.log(sameProduct, cartItems.length);
     dispatch(addItem(sameProduct))
      
-      setSameItemCount(sameItemCount + 1) 
+      setSameItemCount(sameItemCount - 1) 
 
   };
 

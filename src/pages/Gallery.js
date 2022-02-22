@@ -7,7 +7,7 @@ import Input from "../components/Input";
 import { addItem } from "../features/cartSlice";
 import storeItems from "../helpers/data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -52,10 +52,7 @@ const StyledGallery = styled.section`
     border-bottom-left-radius: 8px;
     box-shadow: 5px 5px 40px #c4d2d6;
   }
-  
 `;
-
-
 
 const StyledRadioContainer = styled.div`
   position: absolute;
@@ -65,21 +62,27 @@ const StyledRadioContainer = styled.div`
 
 const Gallery = () => {
   const [radioValue, setRadio] = useState("black");
-  const [img, setImg] = useState(`images/${radioValue}.png`);
+  const [img, setImg] = useState(0);
   const [isSelected, setIsSelected] = useState(false);
   // const [newItem, setNewItem] = useState({id:0, name:'', price: 0, description: '', image: ''})
   // const isSelected = (radioValue) => true;
 
   // setting image according to checked radioValue btn
   useEffect(() => {
-    setImg(`images/${radioValue}.png`);
+    setImg(radioValue);
 
     // if (radioValue === "red") {
     //   setImg("images/red.png")... possible approach
   }, [radioValue]);
   // wrzucasz radioValue jako dependecy bo odpalasz to kiedy się zmienia radioValue
+  // function setImgSource(){
+    
+  // }
 
+
+  
   const handleChange = (e) => {
+    console.log('klikkkkkkk');
     setRadio(e.target.value);
     setIsSelected(true);
     // dodaj klasę z animacją w momencie handle change
@@ -103,46 +106,46 @@ const Gallery = () => {
 
   // const getImagePath = (radioValue) => `images/${radioValue}.png`;
   // ścieżka w przypadku pobierania z publick folder
-
-
   
-
   return (
     <>
-
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={[Navigation, Scrollbar, A11y, Mousewheel]}
         spaceBetween={30}
+        mousewheel={true}
+        loop={true}
+        direction={"horizontal"}
         slidesPerView={1}
-        navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        navigation={true}
       >
         {storeItems.map(({ id, name, price, description, images }) => {
           // image.map() renderuj inputy na podstawie images jeśli jest
           // jest kilka kolorów renderujesz inputy
-          // console.log(storeItems[1].image, "dupa");
+          {/* console.log(images[0]) */}
           return (
             <SwiperSlide key={id}>
               <StyledGallery>
                 <div className="flex-container">
                   <div className="img-container">
                     <Image
-                      src={images}
+                      src={images[0]}
+                      
                       isSelected={isSelected}
                       className={` gallery-img ${isSelected && "fade-in"}`}
                     />
 
                     <StyledRadioContainer>
-                      {images.map((image) => {
+                      {images.map((image, index) => {
                         return (
                           <Input
                             type="radio"
                             name="color"
-                            value="black"
+                            value={index}
+                            // poprzez value możemy się dostać do każdego z images
                             defaultChecked="true"
                             // checked={isSelected("black")}
-                            onChange={handleChange}
+                            onChange={()=>console.log('nowy klik')}
+                            onClick={handleChange}
                           />
                         );
                       })}
