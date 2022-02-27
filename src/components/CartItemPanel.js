@@ -56,26 +56,28 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
   const [sameItemCount, setSameItemCount] = useState(1)
   
   const fetchSameProduct = (id) => cartItems.find((item) => item.id === id);
+  const fetchSameItems = (id) => cartItems.filter((item) => item.id === id);
   
   const handleAddSameItem = () => {
     const sameProduct = fetchSameProduct(id)
-    console.log(sameProduct, cartItems.length);
     dispatch(addItem(sameProduct))
      
       setSameItemCount(sameItemCount + 1) 
   };
 
   const handleRemoveSameItem = () => {
-      const sameProduct = fetchSameProduct(id)
-    console.log(sameProduct, cartItems.length);
-    dispatch(addItem(sameProduct))
+      const sameProduct = fetchSameProduct(id);
+   
+    dispatch(removeItem(sameProduct));
      
       setSameItemCount(sameItemCount - 1) 
 
   };
 
-  const handleRemoveItem = () => {
-    dispatch(removeItem(index));
+  const handleRemoveAllSameItems = () => {
+    const sameItems = fetchSameItems(id);
+    console.log(sameItems);
+    dispatch(removeItem(sameItems));
     
   };
 
@@ -94,7 +96,7 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
       <div className="item-info">
         <p> zł {price}</p>
       </div>
-      <GoX className="deleteBtn" onClick={handleRemoveItem} />
+      <GoX className="deleteBtn" onClick={handleRemoveAllSameItems} />
     </StyledCartPanel>
   );
 };
