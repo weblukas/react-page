@@ -8,7 +8,7 @@ const Home = () => {
   
     return (
       <div>
-        <h1>Home</h1>
+        <h1>Home sweet home </h1>
         {isLoading && "Loading..."}
         {isError && error.message}
         {isSuccess &&
