@@ -8,12 +8,16 @@ const Home = () => {
   
     return (
       <div>
-        <h1>Home sweet home </h1>
+        <h1>Fake store items</h1>
         {isLoading && "Loading..."}
         {isError && error.message}
         {isSuccess &&
           data &&
-          data.map((product, i) => <h1 key={product.id}>{product.title}</h1>)}
+          data.map((product, index) =>( 
+            <div>
+              <p key={product.id}>{product.title}</p>
+              <img src={product.image} alt="" style={{width: '100px'}} />
+            </div>))}
           
       </div>
     );
