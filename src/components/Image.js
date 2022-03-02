@@ -8,6 +8,14 @@ const StyledImage = styled.img`
     top: 70px;
     left: 200px;
   
+    @media screen and (max-width: 1550px ) {
+      width: 300px;
+    }
+
+    @media screen and (max-width: 1150px ) {
+      width: 200px;
+      left: 100px;
+    }
 
   .fade-in {
     animation: 0.5s ease 0.5s normal forwards 1 appear;

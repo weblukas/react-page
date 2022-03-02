@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import GalleryContext from "../app/galleryContex";
 
 const StyledButton = styled.button`
   width: 120px;
@@ -18,10 +20,12 @@ const StyledButton = styled.button`
 
 const Button = ({handleAddItem, productId}) => {
 
-  // const addItemBtn = useRef(passRef);
-
-  // console.log(addItemBtn)
-
+  
+//const ctx = useContext(GalleryContext)
+ // console.log(ctx.handleAddItem)
+  //ctx.handleAddItem(ctx.productId) nie działą
+ 
+ 
   const handleClick = ()=>{
     handleAddItem(productId)
   }

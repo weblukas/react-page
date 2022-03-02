@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Button";
@@ -8,6 +8,8 @@ import { addItem } from "../features/cartSlice";
 import storeItems from "../helpers/data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
+
+import GalleryContext from "../app/galleryContex";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -42,6 +44,14 @@ const StyledGallery = styled.section`
   .flex-container {
     display: flex;
     position: relative;
+
+    @media screen and (max-width: 1550px ) {
+      width: 800px;
+    }
+
+    @media screen and (max-width: 1150px ) {
+      width: 600px;
+    }
   }
 
   .img-container {
@@ -78,6 +88,8 @@ const Gallery = () => {
   // function setImgSource(){
     
   // }
+
+
 
 
   
@@ -121,9 +133,12 @@ const Gallery = () => {
         {storeItems.map(({ id, name, price, description, images }) => {
           // image.map() renderuj inputy na podstawie images jeśli jest
           // jest kilka kolorów renderujesz inputy
-          {/* console.log(images[0]) */}
+          //   <GalleryContext.Provider value={{handleAddItem, id}}> coś nie działa 
           return (
             <SwiperSlide key={id}>
+            
+
+      
               <StyledGallery>
                 <div className="flex-container">
                   <div className="img-container">
@@ -149,29 +164,6 @@ const Gallery = () => {
                           />
                         );
                       })}
-
-                      {/* <Input
-                        type="radio"
-                        name="color"
-                        value="red"
-                        // checked={isSelected("color2")}
-                        onChange={handleChange}
-                      />
-
-                      <Input
-                        type="radio"
-                        name="color"
-                        value="green"
-                        // checked={isSelected("color3")}
-                        onChange={handleChange}
-                      />
-                      <Input
-                        type="radio"
-                        name="color"
-                        value="blue"
-                        // checked={isSelected("color3")}
-                        onChange={handleChange}
-                      /> */}
                     </StyledRadioContainer>
                   </div>
                   <StyledDescriptionPanel>
@@ -186,6 +178,7 @@ const Gallery = () => {
                   </StyledDescriptionPanel>
                 </div>
               </StyledGallery>
+              
             </SwiperSlide>
           );
         })}

@@ -13,3 +13,12 @@
 .swiper-button-prev {
   margin-left: 13rem;
 }
+@media screen and (max-width: 1550px) {
+  .swiper-button-next {
+    margin-right: 5rem;
+  }
+
+  .swiper-button-prev {
+    margin-left: 5rem;
+  }
+}

@@ -10,7 +10,7 @@ const Home = () => {
       <div>
         <h1>Fake store items</h1>
         {isLoading && "Loading..."}
-        {isError && error.message}
+        {error && <h2>Somethig went wrong</h2>}
         {isSuccess &&
           data &&
           data.map((product, index) =>( 
