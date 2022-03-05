@@ -6,6 +6,13 @@ import Image from "../components/Image";
 import Input from "../components/Input";
 import { addItem } from "../features/cartSlice";
 import storeItems from "../helpers/data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const StyledDescriptionPanel = styled.section`
   display: flex;
@@ -55,21 +62,27 @@ const StyledRadioContainer = styled.div`
 
 const Gallery = () => {
   const [radioValue, setRadio] = useState("black");
-  const [img, setImg] = useState(`images/${radioValue}.png`);
+  const [img, setImg] = useState(0);
   const [isSelected, setIsSelected] = useState(false);
   // const [newItem, setNewItem] = useState({id:0, name:'', price: 0, description: '', image: ''})
   // const isSelected = (radioValue) => true;
 
   // setting image according to checked radioValue btn
   useEffect(() => {
-    setImg(`images/${radioValue}.png`);
+    setImg(radioValue);
 
     // if (radioValue === "red") {
     //   setImg("images/red.png")... possible approach
   }, [radioValue]);
   // wrzucasz radioValue jako dependecy bo odpalasz to kiedy się zmienia radioValue
+  // function setImgSource(){
+    
+  // }
 
+
+  
   const handleChange = (e) => {
+    console.log('klikkkkkkk');
     setRadio(e.target.value);
     setIsSelected(true);
     // dodaj klasę z animacją w momencie handle change
@@ -91,70 +104,94 @@ const Gallery = () => {
     dispatch(addItem(product));
   };
 
-  const getImagePath = (radioValue) => `images/${radioValue}.png`;
+  // const getImagePath = (radioValue) => `images/${radioValue}.png`;
+  // ścieżka w przypadku pobierania z publick folder
+  
+  return (
+    <>
+      <Swiper
+        modules={[Navigation, Scrollbar, A11y, Mousewheel]}
+        spaceBetween={30}
+        mousewheel={true}
+        loop={true}
+        direction={"horizontal"}
+        slidesPerView={1}
+        navigation={true}
+      >
+        {storeItems.map(({ id, name, price, description, images }) => {
+          // image.map() renderuj inputy na podstawie images jeśli jest
+          // jest kilka kolorów renderujesz inputy
+          {/* console.log(images[0]) */}
+          return (
+            <SwiperSlide key={id}>
+              <StyledGallery>
+                <div className="flex-container">
+                  <div className="img-container">
+                    <Image
+                      src={images[0]}
+                      
+                      isSelected={isSelected}
+                      className={` gallery-img ${isSelected && "fade-in"}`}
+                    />
 
-  return storeItems.map(({ id, name, price, description, image }) => {
-    // image.map() renderuj inputy na podstawie images jeśli jest
-    // jest kilka kolorów renderujesz inputy
+                    <StyledRadioContainer>
+                      {images.map((image, index) => {
+                        return (
+                          <Input
+                            type="radio"
+                            name="color"
+                            value={index}
+                            // poprzez value możemy się dostać do każdego z images
+                            defaultChecked="true"
+                            // checked={isSelected("black")}
+                            onChange={()=>console.log('nowy klik')}
+                            onClick={handleChange}
+                          />
+                        );
+                      })}
 
-    return (
-      <StyledGallery key={id}>
-        <div className="flex-container">
-          <div className="img-container">
-            <Image
-              src={getImagePath(radioValue)}
-              isSelected={isSelected}
-              className={` gallery-img ${isSelected && "fade-in"}`}
-            />
+                      {/* <Input
+                        type="radio"
+                        name="color"
+                        value="red"
+                        // checked={isSelected("color2")}
+                        onChange={handleChange}
+                      />
 
-            <StyledRadioContainer>
-              <Input
-                type="radio"
-                name="color"
-                value="black"
-                defaultChecked="true"
-                // checked={isSelected("black")}
-                onChange={handleChange}
-              />
-
-              <Input
-                type="radio"
-                name="color"
-                value="red"
-                // checked={isSelected("color2")}
-                onChange={handleChange}
-              />
-
-              <Input
-                type="radio"
-                name="color"
-                value="green"
-                // checked={isSelected("color3")}
-                onChange={handleChange}
-              />
-              <Input
-                type="radio"
-                name="color"
-                value="blue"
-                // checked={isSelected("color3")}
-                onChange={handleChange}
-              />
-            </StyledRadioContainer>
-          </div>
-          <StyledDescriptionPanel>
-            <h1>{name}</h1>
-            <div className="btn-container">
-              <Button handleAddItem={handleAddItem} productId={id} />
-              {/* czy lepiej onClick={handleAddItem} */}
-              <span>Jbl Flip 6 {radioValue} color</span>
-              <h3>{price} zł</h3>
-              <p>{description}</p>
-            </div>
-          </StyledDescriptionPanel>
-        </div>
-      </StyledGallery>
-    );
-  });
+                      <Input
+                        type="radio"
+                        name="color"
+                        value="green"
+                        // checked={isSelected("color3")}
+                        onChange={handleChange}
+                      />
+                      <Input
+                        type="radio"
+                        name="color"
+                        value="blue"
+                        // checked={isSelected("color3")}
+                        onChange={handleChange}
+                      /> */}
+                    </StyledRadioContainer>
+                  </div>
+                  <StyledDescriptionPanel>
+                    <h1>{name}</h1>
+                    <div className="btn-container">
+                      <Button handleAddItem={handleAddItem} productId={id} />
+                      {/* czy lepiej onClick={handleAddItem} */}
+                      <span>Jbl Flip 6 {radioValue} color</span>
+                      <h3>{price} zł</h3>
+                      <p>{description}</p>
+                    </div>
+                  </StyledDescriptionPanel>
+                </div>
+              </StyledGallery>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </>
+  );
 };
 
 export default Gallery;
