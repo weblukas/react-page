@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
+// chce stworzyć odrębny komponent aby go użyć do fetchowanych produktów
 const ProductInfoPanel = () => {
   return (
     <>
