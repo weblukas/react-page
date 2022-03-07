@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
-import { addItem, removeItem } from "../features/cartSlice";
-import { useEffect } from "react";
+import { addItem, removeItem, removeItems } from "../features/cartSlice";
+
 const StyledCartPanel = styled.div`
   background-color: #fff;
   width: 40%;
@@ -51,13 +51,13 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ id, name, price, index, images }) => {
+const CartItemPanel = ({ id, title, price, index, images }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [sameItemCount, setSameItemCount] = useState(1)
   
   const fetchSameProduct = (id) => cartItems.find((item) => item.id === id);
-  const fetchSameItems = (id) => cartItems.filter((item) => item.id === id);
+  
   
   const handleAddSameItem = () => {
     const sameProduct = fetchSameProduct(id)
@@ -66,9 +66,6 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
       setSameItemCount(sameItemCount + 1) 
   };
 
-  // useEffect(()=>{
-
-  // },[sameItemCount])
 
   
   const handleRemoveSameItem = () => {
@@ -77,13 +74,13 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
     dispatch(removeItem(sameProduct));
      
       setSameItemCount(sameItemCount - 1) 
-
+      if(sameItemCount <= 0 ){ dispatch(removeItems(id))}
   };
   // usunięcie wszyskich produktów o tym samym id
   const handleRemoveAllSameItems = () => {
-    const sameItems = fetchSameItems(id);
-    console.log(sameItems);
-    dispatch(removeItem(sameItems));
+    // const sameItems = fetchSameItems(id);
+    
+    dispatch(removeItems(id));
     
   };
 
@@ -93,7 +90,7 @@ const CartItemPanel = ({ id, name, price, index, images }) => {
       <div>
       <img src={thumbnail} alt='thumbnail' className="thumbnail" />
       </div>
-      <h2 className="item-name">{name}</h2>
+      <h2 className="item-name">{title}</h2>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>

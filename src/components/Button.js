@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import GalleryContext from "../app/galleryContex";
+import { useGetStoreItemsQuery } from "../helpers/api";
 
 const StyledButton = styled.button`
   width: 120px;
@@ -19,7 +20,11 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({handleAddItem, productId}) => {
-
+  
+  // const { data } =
+  // useGetStoreItemsQuery();
+  
+  // console.log(data);
   
 //const ctx = useContext(GalleryContext)
  // console.log(ctx.handleAddItem)
