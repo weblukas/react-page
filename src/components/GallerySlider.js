@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
-import Image from './Image';
-import Button from './Button';
-import Input from './Input';
+import Image from "./Image";
+import Button from "./Button";
+import Input from "./Input";
 
 const StyledGallery = styled.section`
   margin-top: 5rem;
@@ -31,7 +31,6 @@ const StyledGallery = styled.section`
     border-bottom-left-radius: 8px;
     box-shadow: 5px 5px 40px #c4d2d6;
   }
-
 `;
 
 const StyledRadioContainer = styled.div`
@@ -59,49 +58,69 @@ const StyledDescriptionPanel = styled.section`
   }
 `;
 
+const GallerySlider = ({
+  ItemId,
+  title,
+  description,
+  images,
+  defaultImage,
+  price,
+  id,
+  handleAddItem,
+}) => {
+ 
+  const [imgIndex, setImgIndex] = useState(0);
 
-const GallerySlider = ({id, title ,description, images, defaultImage, price, handleAddItem}) => {
+  const handleChange = (index) => {
+    // const {
+    //   target: { value },
+    // } = event;
+    console.log("klik");
+    setImgIndex(index);
+  };
 
+  // if I have input index I can setimgIndex to index
+  // const index = 2;
 
-  const radio = 0
   return (
     <StyledGallery>
-                <div className="flex-container">
-                  <div className="img-container">
-                    <Image
-                      src={!images ? defaultImage : images[radio] }
-                      // isSelected={isSelected}
-                      className={` gallery-img ${"fade-in"}`}
-                    />
+      <div className="flex-container">
+        <div className="img-container">
+          <Image
+            src={!images ? defaultImage : images[imgIndex]}
+            // isSelected={isSelected}
+            className={` gallery-img ${"fade-in"}`}
+          />
 
-                    <StyledRadioContainer>
-                      {images && images.map((image, index) => {
-                        return (
-                          <Input
-                            type="radio"
-                            name="color"
-                            value={index}
-                            // poprzez value możemy się dostać do każdego z images
-                            defaultChecked="true"
-                            // checked={isSelected("black")}
-                            onChange={() => console.log("nowy klik")}
-                            // onClick={handleChange}
-                          />
-                        );
-                      })}
-                    </StyledRadioContainer>
-                  </div>
-                  <StyledDescriptionPanel>
-                    <h1>{title}</h1>
-                    <div className="btn-container">
-                      <Button handleAddItem={handleAddItem} productId={id} />
-                      <h3>{price} zł</h3>
-                      <p>{description}</p>
-                    </div>
-                  </StyledDescriptionPanel>
-                </div>
-              </StyledGallery>
-  )
-}
+          <StyledRadioContainer>
+            {images &&
+              images.map((image, index) => {
+             
+                return (
+                  <Input
+                    // name="color"
+                    // value={index}
+                    // poprzez value możemy się dostać do każdego z images
+                    // defaultChecked="true"
+                    // checked={isSelected("black")}
+                    value={index}
+                    handleChange={() => handleChange(index)}
+                  />
+                );
+              })}
+          </StyledRadioContainer>
+        </div>
+        <StyledDescriptionPanel>
+          <h1>{title}</h1>
+          <div className="btn-container">
+            <Button handleAddItem={handleAddItem} productId={ItemId} id={id} />
+            <h3>{price} zł</h3>
+            <p>{description}</p>
+          </div>
+        </StyledDescriptionPanel>
+      </div>
+    </StyledGallery>
+  );
+};
 
-export default GallerySlider
+export default GallerySlider;

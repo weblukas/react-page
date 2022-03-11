@@ -1,6 +1,6 @@
 const storeItems = [
   {
-    id: 1,
+    ItemId: 1,
     title: "jbl speaker",
     price: 456,
     description:
@@ -11,7 +11,7 @@ const storeItems = [
     // w przypadku większej ilości elementów nie działa ,"images/green.png", "images/blue.png"
   },
   {
-    id: 2,
+    ItemId: 2,
     title: "sony speaker",
     price: 748,
     description:
@@ -20,7 +20,7 @@ const storeItems = [
       images: ["images/sony-blue.png", "images/black-sony.png"],
   },
   {
-    id: 3,
+    ItemId: 3,
     title: "sony blue",
     price: 426,
     description:

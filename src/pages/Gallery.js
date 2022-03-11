@@ -18,11 +18,11 @@ const Gallery = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const fetchProduct = (id) => storeItems.find((item) => item.id === id);
+  const fetchProduct = (ItemId) => storeItems.find((item) => item.ItemId === ItemId);
   // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
 
-  const handleAddItem = (id) => {
-    const product = fetchProduct(id);
+  const handleAddItem = (ItemId) => {
+    const product = fetchProduct(ItemId);
 
     if (cartItems.includes(product)) {
       return;
@@ -41,13 +41,13 @@ const Gallery = () => {
         slidesPerView={1}
         navigation={true}
       >
-        {storeItems.map(({ id, title, price, description, defaultImage, images }) => {
+        {storeItems.map(({ ItemId, title, price, description, defaultImage, images }) => {
           // image.map() renderuj inputy na podstawie images jeśli jest
           // jest kilka kolorów renderujesz inputy
           return (
-            <SwiperSlide key={id}>
+            <SwiperSlide key={ItemId}>
               <GallerySlider
-                id={id}
+                ItemId={ItemId}
                 title={title}
                 description={description}
                 defaultImage={defaultImage}

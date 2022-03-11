@@ -31,7 +31,7 @@ const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
    const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`)
-  // const isMobile = useMediaQuery(`(max-width: 960px)`);
+  
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);

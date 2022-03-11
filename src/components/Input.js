@@ -49,14 +49,15 @@ const StyledInput = styled.input`
 `;
 
 
-const Input = ({onChange, value, name, defaultChecked, type}) => {
+const Input = ({ value, defaultChecked, handleChange}) => {
+  
   return <StyledInput
-  type={type}
-  name={name}
+  type="radio"
   value={value}
   defaultChecked={defaultChecked}
   // checked={isSelected("black")}
-  onChange={onChange}
+  
+  onClick={handleChange}
 />
 };
 

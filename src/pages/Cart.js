@@ -6,7 +6,7 @@ const Cart = () => {
 
   let displayedCartItems = cartItems.reduce((accCartItem, currentCartItem) => {
     const isHavingMultipleEntries = accCartItem.find(
-      (item) => item.id === currentCartItem.id
+      (item) => item.ItemId === currentCartItem.ItemId
     );
 
     if (!isHavingMultipleEntries) {
@@ -21,10 +21,10 @@ const Cart = () => {
       <h1>cart</h1>
 
       {cartItems.length > 0 &&
-        displayedCartItems.map(({ id, name, price, images }, index) => {
+        displayedCartItems.map(({ ItemId, name, price, images }, index) => {
           return (
             <CartItemPanel
-              id={id}
+              ItemId={ItemId}
               name={name}
               price={price}
               index={index}

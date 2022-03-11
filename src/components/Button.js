@@ -19,7 +19,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({handleAddItem, productId}) => {
+const Button = ({handleAddItem, productId, id}) => {
   
   // const { data } =
   // useGetStoreItemsQuery();
@@ -40,7 +40,8 @@ const Button = ({handleAddItem, productId}) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={handleClick}
-      id={productId}
+      ItemId={productId}
+      id={id}
       
       // ref={addItemBtn}
     >

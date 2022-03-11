@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
@@ -22,7 +22,6 @@ const StyledCartPanel = styled.div`
     width: 100px;
     /* height: 100px; */
     margin: 20px;
-    
   }
 
   .item-amount {
@@ -51,44 +50,43 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ id, title, price, index, images }) => {
+const CartItemPanel = ({ ItemId, title, price, index, images }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const [sameItemCount, setSameItemCount] = useState(1)
-  
-  const fetchSameProduct = (id) => cartItems.find((item) => item.id === id);
-  
-  
+  const [sameItemCount, setSameItemCount] = useState(1);
+
+  const fetchSameProduct = (ItemId) =>
+    cartItems.find((item) => item.ItemId === ItemId);
+
   const handleAddSameItem = () => {
-    const sameProduct = fetchSameProduct(id)
-    dispatch(addItem(sameProduct))
-     
-      setSameItemCount(sameItemCount + 1) 
+    const sameProduct = fetchSameProduct(ItemId);
+    dispatch(addItem(sameProduct));
+
+    setSameItemCount(sameItemCount + 1);
   };
 
-
-  
   const handleRemoveSameItem = () => {
-      const sameProduct = fetchSameProduct(id);
-   
+    const sameProduct = fetchSameProduct(ItemId);
+
     dispatch(removeItem(sameProduct));
-     
-      setSameItemCount(sameItemCount - 1) 
-      if(sameItemCount <= 0 ){ dispatch(removeItems(id))}
+
+    setSameItemCount(sameItemCount - 1);
+    if (sameItemCount <= 0) {
+      dispatch(removeItems(ItemId));
+    }
   };
-  // usunięcie wszyskich produktów o tym samym id
+  // usunięcie wszyskich produktów o tym samym ItemId
   const handleRemoveAllSameItems = () => {
-    // const sameItems = fetchSameItems(id);
-    
-    dispatch(removeItems(id));
-    
+    // const sameItems = fetchSameItems(ItemId);
+
+    dispatch(removeItems(ItemId));
   };
 
   const thumbnail = images[0];
   return (
-    <StyledCartPanel key={id}>
+    <StyledCartPanel key={ItemId}>
       <div>
-      <img src={thumbnail} alt='thumbnail' className="thumbnail" />
+        <img src={thumbnail} alt="thumbnail" className="thumbnail" />
       </div>
       <h2 className="item-name">{title}</h2>
       <div className="item-amount">
