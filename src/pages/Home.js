@@ -9,10 +9,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+
 const Home = () => {
+
+    // const MemoSwiper = memo(Swiper)
+
   const { data, error, isLoading, isSuccess} =
     useGetStoreItemsQuery();
-  console.log(data);
+  console.log('render');
 
   return (
     <div>

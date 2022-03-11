@@ -61,12 +61,15 @@ const StyledDescriptionPanel = styled.section`
 
 
 const GallerySlider = ({id, title ,description, images, defaultImage, price, handleAddItem}) => {
+
+
+  const radio = 0
   return (
     <StyledGallery>
                 <div className="flex-container">
                   <div className="img-container">
                     <Image
-                      src={defaultImage}
+                      src={!images ? defaultImage : images[radio] }
                       // isSelected={isSelected}
                       className={` gallery-img ${"fade-in"}`}
                     />
