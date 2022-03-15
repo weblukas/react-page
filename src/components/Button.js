@@ -19,30 +19,15 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({handleAddItem, productId, id}) => {
-  
-  // const { data } =
-  // useGetStoreItemsQuery();
-  
-  // console.log(data);
-  
-//const ctx = useContext(GalleryContext)
- // console.log(ctx.handleAddItem)
-  //ctx.handleAddItem(ctx.productId) nie działą
- 
- 
-  const handleClick = ()=>{
-    handleAddItem(productId)
-  }
+const Button = ({ onClick, id }) => {
+
   return (
     <StyledButton
       as={motion.button}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      onClick={handleClick}
-      ItemId={productId}
+      onClick={onClick}
       id={id}
-      
       // ref={addItemBtn}
     >
       Add to cart

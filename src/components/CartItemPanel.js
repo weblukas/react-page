@@ -50,43 +50,44 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ ItemId, title, price, index, images }) => {
+const CartItemPanel = ({ uid, title, price, index, images }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [sameItemCount, setSameItemCount] = useState(1);
 
-  const fetchSameProduct = (ItemId) =>
-    cartItems.find((item) => item.ItemId === ItemId);
+  const fetchSameProduct = (uid) =>
+    cartItems.find((item) => item.uid === uid);
 
   const handleAddSameItem = () => {
-    const sameProduct = fetchSameProduct(ItemId);
+    const sameProduct = fetchSameProduct(uid);
     dispatch(addItem(sameProduct));
 
     setSameItemCount(sameItemCount + 1);
   };
 
   const handleRemoveSameItem = () => {
-    const sameProduct = fetchSameProduct(ItemId);
+    const sameProduct = fetchSameProduct(uid);
 
     dispatch(removeItem(sameProduct));
 
     setSameItemCount(sameItemCount - 1);
     if (sameItemCount <= 0) {
-      dispatch(removeItems(ItemId));
+      dispatch(removeItems(uid));
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
   const handleRemoveAllSameItems = () => {
     // const sameItems = fetchSameItems(ItemId);
 
-    dispatch(removeItems(ItemId));
+    dispatch(removeItems(uid));
   };
 
-  const thumbnail = images[0];
+  // const thumbnail = images[0] || image;
   return (
-    <StyledCartPanel key={ItemId}>
+    <StyledCartPanel key={uid}>
       <div>
-        <img src={thumbnail} alt="thumbnail" className="thumbnail" />
+      <h4>obrazek</h4>
+        {/* <img src={thumbnail } alt="thumbnail" className="thumbnail" /> */}
       </div>
       <h2 className="item-name">{title}</h2>
       <div className="item-amount">

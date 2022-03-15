@@ -58,8 +58,7 @@ const StyledDescriptionPanel = styled.section`
   }
 `;
 
-const GallerySlider = ({
-  ItemId,
+const ProductSlider = ({
   title,
   description,
   images,
@@ -68,19 +67,22 @@ const GallerySlider = ({
   id,
   handleAddItem,
 }) => {
- 
   const [imgIndex, setImgIndex] = useState(0);
 
   const handleChange = (index) => {
-    // const {
-    //   target: { value },
-    // } = event;
-    console.log("klik");
     setImgIndex(index);
   };
 
   // if I have input index I can setimgIndex to index
   // const index = 2;
+
+  const handleClick = (event) => {
+    const {
+      target: { id },
+    } = event;
+    handleAddItem(id);
+    // console.log('klik home');
+  };
 
   return (
     <StyledGallery>
@@ -95,15 +97,11 @@ const GallerySlider = ({
           <StyledRadioContainer>
             {images &&
               images.map((image, index) => {
-             
                 return (
                   <Input
-                    // name="color"
-                    // value={index}
-                    // poprzez value możemy się dostać do każdego z images
-                    // defaultChecked="true"
+               
                     // checked={isSelected("black")}
-                    value={index}
+                    // value={index}
                     handleChange={() => handleChange(index)}
                   />
                 );
@@ -113,7 +111,7 @@ const GallerySlider = ({
         <StyledDescriptionPanel>
           <h1>{title}</h1>
           <div className="btn-container">
-            <Button handleAddItem={handleAddItem} productId={ItemId} id={id} />
+            <Button onClick={handleClick} id={id} />
             <h3>{price} zł</h3>
             <p>{description}</p>
           </div>
@@ -123,4 +121,4 @@ const GallerySlider = ({
   );
 };
 
-export default GallerySlider;
+export default ProductSlider;

@@ -12,14 +12,14 @@ export const cartSlice = createSlice({
       state.cartItems.push(action.payload);
     },
     removeItem: (state, action) => {
-      state.cartItems.splice(action.payload, 1)
+      state.cartItems.splice(action.payload, 1);
     },
-    removeItems: (state, action)=> {
-     state.cartItems = state.cartItems.filter((cartItem)=> {
-      const removedProductsId = action.payload
-     return ( removedProductsId !== cartItem.ItemId  )
-     }  )
-    }
+    removeItems: (state, action) => {
+      state.cartItems = state.cartItems.filter((cartItem) => {
+        const removedProductsId = action.payload;
+        return removedProductsId !== cartItem.uid;
+      });
+    },
   },
 });
 
