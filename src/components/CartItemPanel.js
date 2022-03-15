@@ -50,7 +50,7 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ uid, title, price, index, images }) => {
+const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [sameItemCount, setSameItemCount] = useState(1);
@@ -82,12 +82,11 @@ const CartItemPanel = ({ uid, title, price, index, images }) => {
     dispatch(removeItems(uid));
   };
 
-  // const thumbnail = images[0] || image;
+  
   return (
     <StyledCartPanel key={uid}>
       <div>
-      <h4>obrazek</h4>
-        {/* <img src={thumbnail } alt="thumbnail" className="thumbnail" /> */}
+        <img src={defaultImage ? defaultImage : image } alt="thumbnail" className="thumbnail" />
       </div>
       <h2 className="item-name">{title}</h2>
       <div className="item-amount">

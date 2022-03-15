@@ -62,13 +62,13 @@ const MobileMenu = ({ handleClick }) => {
       >
         <MobileNavList>
           <NavLink to="/" className="nav-link" onClick={hideModalMenu}>
-            Home
+            Store
           </NavLink>
           <NavLink to="/gallery" className="nav-link">
-            Galery
+            Premium products
           </NavLink>
           <NavLink to="/blog" className="nav-link">
-            Blog
+            Cart
           </NavLink>
         </MobileNavList>
         <ModalBtn>

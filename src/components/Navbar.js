@@ -44,8 +44,8 @@ const Navbar = () => {
         </NavLink>
         {!isMobile ? (
           <ul>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/gallery">Good Stuff</NavLink>
+            <NavLink to="/">Store</NavLink>
+            <NavLink to="/gallery">Premium products</NavLink>
             <NavLink to="/cart">Cart</NavLink>
           </ul>
         ) : null}

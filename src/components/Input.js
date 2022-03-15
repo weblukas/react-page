@@ -36,7 +36,7 @@ const StyledInput = styled.input`
     display: block;
     width: 30px;
     height: 30px;
-    background-color: white;
+    background-color: #df82d2;
     opacity: 0;
     border-radius: 50%;
     transform: translate(-9px, -9px);

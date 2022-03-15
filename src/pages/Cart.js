@@ -21,14 +21,15 @@ const Cart = () => {
       <h1>cart</h1>
 
       {displayedCartItems.length > 0 &&
-        displayedCartItems.map(({ uid, name, price, images }, index) => {
+        displayedCartItems.map(({ uid, name, price, image, defaultImage }, index) => {
           return (
             <CartItemPanel
               uid={uid}
               name={name}
               price={price}
               index={index}
-              images={images}
+              image={image}
+              defaultImage={defaultImage}
             />
           );
         })}

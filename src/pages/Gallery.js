@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import rawFeaturedProducts from "../data/featured-products";
 import { addUID2Items } from "../helpers/data";
-import ProductSlider from "../components/GallerySlider";
+import ProductSlider from "../components/ProductsSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
 
