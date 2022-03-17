@@ -5,14 +5,14 @@ import rawFeaturedProducts from "../data/featured-products";
 import { addUID2Items } from "../helpers/data";
 import ProductSlider from "../components/ProductsSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
+import { Keyboard, Navigation, Scrollbar } from "swiper";
 
 // import GalleryContext from "../app/galleryContex";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+// import "swiper/css/scrollbar";
 
 const prepareFeaturedItems = (items) => addUID2Items(items, "featured");
 
@@ -26,22 +26,24 @@ const Gallery = () => {
   const fetchProduct = (uid) =>
     featuredProducts.find((item) => item.uid === uid);
   // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
-console.log(fetchProduct, 'kroro');
+  console.log(fetchProduct, "kroro");
   const handleAddItem = (uid) => {
     const product = fetchProduct(uid);
-    
+
     if (cartItems.includes(product)) {
       return;
     }
     dispatch(addItem(product));
+    
   };
 
   return (
     <>
       <Swiper
-        modules={[Navigation, Scrollbar, A11y, Mousewheel]}
+        modules={[Navigation, Scrollbar, Keyboard]}
         spaceBetween={30}
-        mousewheel={true}
+        mousewheel={false}
+        keyboard={{ enabled: true }}
         loop={true}
         direction={"horizontal"}
         slidesPerView={1}

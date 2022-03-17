@@ -3,7 +3,7 @@ import ProductSlider from "../components/ProductsSlider";
 import { useGetStoreItemsQuery } from "../helpers/api";
 import { addUID2Items } from "../helpers/data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar, A11y, Mousewheel } from "swiper";
+import { Navigation, Scrollbar, A11y, Mousewheel, Keyboard } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../features/cartSlice";
 
@@ -24,14 +24,13 @@ const Store = () => {
     isSuccess,
   } = useGetStoreItemsQuery();
   const products = rawProducts && prepareFetchedItems(rawProducts);
-console.log(products);
-const dispatch = useDispatch();
-const cartItems = useSelector((state) => state.cart.cartItems);
-const fetchProduct = (uid) =>
-products.find((item) => item.uid === uid);
-const handleAddItem = (uid) => {
+  console.log(products);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const fetchProduct = (uid) => products.find((item) => item.uid === uid);
+  const handleAddItem = (uid) => {
     const product = fetchProduct(uid);
-    
+
     if (cartItems.includes(product)) {
       return;
     }
@@ -44,9 +43,10 @@ const handleAddItem = (uid) => {
       {error && <h2>Somethig went wrong</h2>}
 
       <Swiper
-        modules={[Navigation, Scrollbar, A11y, Mousewheel]}
+        modules={[Navigation, Scrollbar, A11y, Mousewheel, Keyboard]}
         spaceBetween={30}
-        mousewheel={true}
+        keyboard={{ enabled: true }}
+        mousewheel={false}
         loop={true}
         direction={"horizontal"}
         slidesPerView={1}

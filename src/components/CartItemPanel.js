@@ -20,7 +20,7 @@ const StyledCartPanel = styled.div`
 
   .thumbnail {
     width: 100px;
-    /* height: 100px; */
+    max-height: 120px;
     margin: 20px;
   }
 
@@ -53,6 +53,7 @@ const StyledCartPanel = styled.div`
 const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  
   const [sameItemCount, setSameItemCount] = useState(1);
 
   const fetchSameProduct = (uid) =>

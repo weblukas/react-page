@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useContext } from "react";
-import GalleryContext from "../app/galleryContex";
-import { useGetStoreItemsQuery } from "../helpers/api";
+
 
 const StyledButton = styled.button`
   width: 120px;
