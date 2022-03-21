@@ -21,7 +21,7 @@ const Cart = () => {
   return (
     <>
       <h1>cart</h1>
-      <h3>Yout total is {total}</h3>
+      <h3>Your total is {total}</h3>
       <h3>Items in cart {nrOfItemsInCart}</h3>
       {displayedCartItems.length > 0 &&
         displayedCartItems.map(({ uid, name, price, image, defaultImage }, index) => {

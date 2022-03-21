@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { FaDev } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
@@ -46,15 +47,16 @@ const Navbar = () => {
           <ul>
             <NavLink to="/">Store</NavLink>
             <NavLink to="/gallery">Premium products</NavLink>
-            <NavLink to="/cart">Cart</NavLink>
+            <NavLink to="/cart">
+              Cart <FaShoppingCart className="cart-icon" />
+            </NavLink>
           </ul>
-        ) : null}
-        {isMobile ? (
-          <MenuHamburger
+        ) : <MenuHamburger
             handleClick={handleClick}
             openMobileMenu={openMobileMenu}
           />
-        ) : null}
+        }
+        
       </StyledNavbar>
       <AnimatePresence
         initial={true}
