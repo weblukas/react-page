@@ -36,7 +36,7 @@ const StyledInput = styled.input`
     display: block;
     width: 30px;
     height: 30px;
-    background-color: white;
+    background-color: #df82d2;
     opacity: 0;
     border-radius: 50%;
     transform: translate(-9px, -9px);
@@ -49,14 +49,15 @@ const StyledInput = styled.input`
 `;
 
 
-const Input = ({onChange, value, name, defaultChecked, type}) => {
+const Input = ({ value, defaultChecked, handleChange}) => {
+  
   return <StyledInput
-  type={type}
-  name={name}
+  type="radio"
   value={value}
   defaultChecked={defaultChecked}
   // checked={isSelected("black")}
-  onChange={onChange}
+  
+  onClick={handleChange}
 />
 };
 

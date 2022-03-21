@@ -1,160 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import Button from "../components/Button";
-import Image from "../components/Image";
-import Input from "../components/Input";
 import { addItem } from "../features/cartSlice";
-import storeItems from "../helpers/data";
+import rawFeaturedProducts from "../data/featured-products";
+import { addUID2Items } from "../helpers/data";
+import ProductSlider from "../components/ProductsSlider";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Keyboard, Navigation, Scrollbar } from "swiper";
 
-const StyledDescriptionPanel = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #c4d2d6;
-  color: #000;
-  font-size: 1.3rem;
-  width: 550px;
-  height: 590px;
-  margin-top: 20px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 0 5px 40px #c4d2d6;
+// import GalleryContext from "../app/galleryContex";
 
-  .btn-container {
-    padding: 2rem;
-  }
-`;
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+// import "swiper/css/scrollbar";
 
-const StyledGallery = styled.section`
-  margin-top: 5rem;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-
-  .flex-container {
-    display: flex;
-    position: relative;
-  }
-
-  .img-container {
-    width: 400px;
-    height: 630px;
-    background-color: #d9d9d9;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    box-shadow: 5px 5px 40px #c4d2d6;
-  }
-`;
-
-const StyledRadioContainer = styled.div`
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-`;
+const prepareFeaturedItems = (items) => addUID2Items(items, "featured");
 
 const Gallery = () => {
-  const [radioValue, setRadio] = useState("black");
-  const [img, setImg] = useState(`images/${radioValue}.png`);
-  const [isSelected, setIsSelected] = useState(false);
-  // const [newItem, setNewItem] = useState({id:0, name:'', price: 0, description: '', image: ''})
-  // const isSelected = (radioValue) => true;
-
-  // setting image according to checked radioValue btn
-  useEffect(() => {
-    setImg(`images/${radioValue}.png`);
-
-    // if (radioValue === "red") {
-    //   setImg("images/red.png")... possible approach
-  }, [radioValue]);
-  // wrzucasz radioValue jako dependecy bo odpalasz to kiedy się zmienia radioValue
-
-  const handleChange = (e) => {
-    setRadio(e.target.value);
-    setIsSelected(true);
-    // dodaj klasę z animacją w momencie handle change
-  };
-
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const fetchProduct = (id) => storeItems.find((item) => item.id === id);
-  // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
+  const featuredProducts =
+    rawFeaturedProducts && prepareFeaturedItems(rawFeaturedProducts);
 
-  const handleAddItem = (id) => {
-    const product = fetchProduct(id);
+  const fetchProduct = (uid) =>
+    featuredProducts.find((item) => item.uid === uid);
+  // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
+  console.log(fetchProduct, "kroro");
+  const handleAddItem = (uid) => {
+    const product = fetchProduct(uid);
 
     if (cartItems.includes(product)) {
       return;
     }
-
     dispatch(addItem(product));
+    
   };
 
-  const getImagePath = (radioValue) => `images/${radioValue}.png`;
-
-  return storeItems.map(({ id, name, price, description, image }) => {
-    // image.map() renderuj inputy na podstawie images jeśli jest
-    // jest kilka kolorów renderujesz inputy
-
-    return (
-      <StyledGallery key={id}>
-        <div className="flex-container">
-          <div className="img-container">
-            <Image
-              src={getImagePath(radioValue)}
-              isSelected={isSelected}
-              className={` gallery-img ${isSelected && "fade-in"}`}
-            />
-
-            <StyledRadioContainer>
-              <Input
-                type="radio"
-                name="color"
-                value="black"
-                defaultChecked="true"
-                // checked={isSelected("black")}
-                onChange={handleChange}
-              />
-
-              <Input
-                type="radio"
-                name="color"
-                value="red"
-                // checked={isSelected("color2")}
-                onChange={handleChange}
-              />
-
-              <Input
-                type="radio"
-                name="color"
-                value="green"
-                // checked={isSelected("color3")}
-                onChange={handleChange}
-              />
-              <Input
-                type="radio"
-                name="color"
-                value="blue"
-                // checked={isSelected("color3")}
-                onChange={handleChange}
-              />
-            </StyledRadioContainer>
-          </div>
-          <StyledDescriptionPanel>
-            <h1>{name}</h1>
-            <div className="btn-container">
-              <Button handleAddItem={handleAddItem} productId={id} />
-              {/* czy lepiej onClick={handleAddItem} */}
-              <span>Jbl Flip 6 {radioValue} color</span>
-              <h3>{price} zł</h3>
-              <p>{description}</p>
-            </div>
-          </StyledDescriptionPanel>
-        </div>
-      </StyledGallery>
-    );
-  });
+  return (
+    <>
+      <Swiper
+        modules={[Navigation, Scrollbar, Keyboard]}
+        spaceBetween={30}
+        mousewheel={false}
+        keyboard={{ enabled: true }}
+        loop={true}
+        direction={"horizontal"}
+        slidesPerView={1}
+        navigation={true}
+      >
+        {featuredProducts.map(
+          ({ uid, title, price, description, defaultImage, images }) => {
+            // image.map() renderuj inputy na podstawie images jeśli jest
+            // jest kilka kolorów renderujesz inputy
+            return (
+              <SwiperSlide key={uid}>
+                <ProductSlider
+                  id={uid}
+                  title={title}
+                  description={description}
+                  defaultImage={defaultImage}
+                  images={images}
+                  price={price}
+                  handleAddItem={handleAddItem}
+                />
+              </SwiperSlide>
+            );
+          }
+        )}
+      </Swiper>
+    </>
+  );
 };
 
 export default Gallery;

@@ -4,21 +4,24 @@ import "./App.css";
 import Cart from "./pages/Cart";
 import Gallery from "./pages/Gallery";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-
+import Store from "./pages/Store";
+import GlobalStyle from "./components/styles/global";
 
 function App() {
   return (
+    <>
+
     <div className="App">
-     
+      <GlobalStyle />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Store />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
       
     </div>
+    </>
   );
 }
 

@@ -3,11 +3,19 @@ import styled from 'styled-components';
 
 const StyledImage = styled.img`
     
-    width: 400px;
+    width: 30%;
     position: absolute;
     top: 70px;
-    left: 200px;
+    left: 70px;
   
+    @media screen and (max-width: 1550px ) {
+      width: 200px;
+    }
+
+    @media screen and (max-width: 1150px ) {
+      width: 200px;
+      left: 30px;
+    }
 
   .fade-in {
     animation: 0.5s ease 0.5s normal forwards 1 appear;
