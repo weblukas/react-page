@@ -10,6 +10,7 @@ import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import MobileMenu from "./MobileMenu";
 import MenuHamburger from "./MenuHamburger";
 import { deviceSize } from "../helpers/responsive/deviceSize";
+import { useSelector } from "react-redux";
 
 const StyledNavbar = styled.div`
   background: linear-gradient(to right, #f6f6f9, #7799f0);
@@ -32,7 +33,7 @@ const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
    const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`)
-  
+  const nrOfItemsInCart = useSelector((state) => state.cart.nrOfItemsInCart)
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
@@ -48,6 +49,7 @@ const Navbar = () => {
             <NavLink to="/">Store</NavLink>
             <NavLink to="/gallery">Premium products</NavLink>
             <NavLink to="/cart">
+           <span>{nrOfItemsInCart}</span> 
               Cart <FaShoppingCart className="cart-icon" />
             </NavLink>
           </ul>
