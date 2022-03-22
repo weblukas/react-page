@@ -1,7 +1,7 @@
 import React from "react";
 import ProductSlider from "../components/ProductsSlider";
-import { useGetStoreItemsQuery } from "../helpers/api";
-import { addUID2Items } from "../helpers/data";
+import { useFetchItemsFromAllStores } from "../helpers/api";
+ import { addUID2Items } from "../helpers/data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y, Mousewheel, Keyboard } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,30 +12,30 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const prepareFetchedItems = (items) => addUID2Items(items, "normal");
-
 const Store = () => {
   // const MemoSwiper = memo(Swiper)
 
-  const {
-    data: rawProducts,
-    error,
-    isLoading,
-    isSuccess,
-  } = useGetStoreItemsQuery();
-  const products = rawProducts && prepareFetchedItems(rawProducts);
-  console.log(products);
+  const { data, error, isLoading, isSuccess } = useFetchItemsFromAllStores();
+console.log(data);
+  
+// const fetchedProducts = data.filter((item)=> {
+//     return item.type === 'fetched'})
+
+    // console.log(fetchedProducts);
+  
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const fetchProduct = (uid) => products.find((item) => item.uid === uid);
+  const fetchProduct = (uid) => data.find((item) => item.uid === uid);
   const handleAddItem = (uid) => {
-    const product = fetchProduct(uid);
+    // const product = fetchProduct(uid);
 
-    if (cartItems.includes(product)) {
-      return;
-    }
-    dispatch(addItem(product));
+    // if (cartItems.includes(product)) {
+    //   return;
+    // }
+    // dispatch(addItem(product));
   };
+
+
   return (
     <div>
       <h1>Fake store items</h1>
@@ -53,8 +53,8 @@ const Store = () => {
         navigation={true}
       >
         {isSuccess &&
-          products &&
-          products.map((product) => {
+          data &&
+          data.map((product) => {
             const { uid, image, title, description, price } = product;
             return (
               <SwiperSlide key={uid}>

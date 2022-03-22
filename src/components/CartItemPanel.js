@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
-import { addItem, removeItem, removeItems, updateTotal, updateCartQuantity } from "../features/cartSlice";
+import {
+  addItem,
+  removeItem,
+  removeItems,
+  updateTotal,
+  updateCartQuantity,
+} from "../features/cartSlice";
 
 const StyledCartPanel = styled.div`
   background-color: #fff;
@@ -50,35 +56,40 @@ const StyledCartPanel = styled.div`
   }
 `;
 
-const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
+ const findAllMatchinItems = (allItems, searchedItem) =>
+ allItems.filter((item) => item.uid === searchedItem.uid).length;
+
+
+
+const CartItemPanel = ({ cartItem, uid, title, price, index, image, defaultImage }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  
-  const [sameItemCount, setSameItemCount] = useState(1);
 
-  const fetchSameProduct = (uid) =>
-    cartItems.find((item) => item.uid === uid);
+  // const [sameItemCount, setSameItemCount] = useState(1);
+  const sameItemCount = findAllMatchinItems(cartItems, cartItem);
+
+  // const fetchSameProduct = (uid) => cartItems.find((item) => item.uid === uid);
 
   const handleAddSameItem = () => {
-    const sameProduct = fetchSameProduct(uid);
-    dispatch(addItem(sameProduct));
-    dispatch(updateCartQuantity())
+    // const sameProduct = fetchSameProduct(uid);
+    dispatch(addItem(cartItem));
+    // dispatch(updateCartQuantity());
 
-    setSameItemCount(sameItemCount + 1);
+    // setSameItemCount(sameItemCount + 1);
   };
 
   const handleRemoveSameItem = () => {
-    const sameProduct = fetchSameProduct(uid);
+    // const sameProduct = fetchSameProduct(uid);
 
-    dispatch(removeItem(sameProduct));
-    dispatch(updateCartQuantity())
-    setSameItemCount(sameItemCount - 1);
-    dispatch(updateTotal());
-    
+    dispatch(removeItem(cartItem));
+    // dispatch(updateCartQuantity());
+    // setSameItemCount(sameItemCount - 1);
+    // dispatch(updateTotal());
+
     if (sameItemCount <= 0) {
       dispatch(removeItems(uid));
       dispatch(updateTotal());
-      dispatch(updateCartQuantity())
+      dispatch(updateCartQuantity());
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
@@ -87,14 +98,17 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
 
     dispatch(removeItems(uid));
     dispatch(updateTotal());
-    dispatch(updateCartQuantity())
+    dispatch(updateCartQuantity());
   };
 
-  
   return (
     <StyledCartPanel key={uid}>
       <div>
-        <img src={defaultImage ? defaultImage : image } alt="thumbnail" className="thumbnail" />
+        <img
+          src={defaultImage ? defaultImage : image}
+          alt="thumbnail"
+          className="thumbnail"
+        />
       </div>
       <h4 className="item-name">{title}</h4>
       <div className="item-amount">

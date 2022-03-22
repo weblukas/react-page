@@ -25,9 +25,11 @@ const Cart = () => {
       <h3>Items in cart {nrOfItemsInCart}</h3>
       {displayedCartItems.length > 0 &&
         displayedCartItems.map(
-          ({ uid, title, price, image, defaultImage }, index) => {
+          (cartItem, index) => {
+            const { uid, title, price, image, defaultImage } = cartItem;
             return (
               <CartItemPanel
+                cartItem={cartItem}
                 key={uid}
                 uid={uid}
                 title={title}
