@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
-import { addItem, removeItem, removeItems, updateTotal } from "../features/cartSlice";
+import { addItem, removeItem, removeItems, updateTotal, updateCartQuantity } from "../features/cartSlice";
 
 const StyledCartPanel = styled.div`
   background-color: #fff;
@@ -62,6 +62,7 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
   const handleAddSameItem = () => {
     const sameProduct = fetchSameProduct(uid);
     dispatch(addItem(sameProduct));
+    dispatch(updateCartQuantity())
 
     setSameItemCount(sameItemCount + 1);
   };
@@ -70,12 +71,14 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
     const sameProduct = fetchSameProduct(uid);
 
     dispatch(removeItem(sameProduct));
-    
+    dispatch(updateCartQuantity())
     setSameItemCount(sameItemCount - 1);
     dispatch(updateTotal());
+    
     if (sameItemCount <= 0) {
       dispatch(removeItems(uid));
       dispatch(updateTotal());
+      dispatch(updateCartQuantity())
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
@@ -84,6 +87,7 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
 
     dispatch(removeItems(uid));
     dispatch(updateTotal());
+    dispatch(updateCartQuantity())
   };
 
   

@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../features/cartSlice";
+import { addItem, updateCartQuantity } from "../features/cartSlice";
 import rawFeaturedProducts from "../data/featured-products";
 import { addUID2Items } from "../helpers/data";
 import ProductSlider from "../components/ProductsSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Navigation, Scrollbar } from "swiper";
+
+
 
 // import GalleryContext from "../app/galleryContex";
 
@@ -34,7 +36,7 @@ const Gallery = () => {
       return;
     }
     dispatch(addItem(product));
-    
+    dispatch(updateCartQuantity())
   };
 
   return (
