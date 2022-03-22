@@ -99,7 +99,7 @@ const ProductSlider = ({
               images.map((image, index) => {
                 return (
                   <Input
-               
+                    key={index}
                     // checked={isSelected("black")}
                     // value={index}
                     handleChange={() => handleChange(index)}

@@ -26,7 +26,7 @@ const Gallery = () => {
   const fetchProduct = (uid) =>
     featuredProducts.find((item) => item.uid === uid);
   // fetchProduct zmienna przechowująca produkt spełniający warunki funkcji
-  console.log(fetchProduct, "kroro");
+ 
   const handleAddItem = (uid) => {
     const product = fetchProduct(uid);
 

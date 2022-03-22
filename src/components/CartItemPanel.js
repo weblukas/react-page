@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
-import { addItem, removeItem, removeItems } from "../features/cartSlice";
+import { addItem, removeItem, removeItems, updateTotal } from "../features/cartSlice";
 
 const StyledCartPanel = styled.div`
   background-color: #fff;
@@ -70,10 +70,12 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
     const sameProduct = fetchSameProduct(uid);
 
     dispatch(removeItem(sameProduct));
-
+    
     setSameItemCount(sameItemCount - 1);
+    dispatch(updateTotal());
     if (sameItemCount <= 0) {
       dispatch(removeItems(uid));
+      dispatch(updateTotal());
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
@@ -81,6 +83,7 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
     // const sameItems = fetchSameItems(ItemId);
 
     dispatch(removeItems(uid));
+    dispatch(updateTotal());
   };
 
   
@@ -89,7 +92,7 @@ const CartItemPanel = ({ uid, title, price, index, image, defaultImage }) => {
       <div>
         <img src={defaultImage ? defaultImage : image } alt="thumbnail" className="thumbnail" />
       </div>
-      <h2 className="item-name">{title}</h2>
+      <h4 className="item-name">{title}</h4>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>
