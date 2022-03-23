@@ -4,6 +4,9 @@ import Image from "./Image";
 import Button from "./Button";
 import Input from "./Input";
 
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cartSlice";
+
 const StyledGallery = styled.section`
   margin-top: 5rem;
   display: grid;
@@ -59,13 +62,13 @@ const StyledDescriptionPanel = styled.section`
 `;
 
 const ProductSlider = ({
+  product,
   title,
   description,
   images,
   defaultImage,
   price,
   id,
-  handleAddItem,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -75,14 +78,19 @@ const ProductSlider = ({
 
   // if I have input index I can setimgIndex to index
   // const index = 2;
-
-  const handleClick = (event) => {
-    const {
-      target: { id },
-    } = event;
-    handleAddItem(id);
-    // console.log('klik home');
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    
+    
+    
   };
+
+
+
+  const addToCrt = (product )=>{
+    console.log('klik home'); 
+    dispatch(addItem( product))
+  }
 
   return (
     <StyledGallery>
@@ -112,6 +120,9 @@ const ProductSlider = ({
           <h1>{title}</h1>
           <div className="btn-container">
             <Button onClick={handleClick} id={id} />
+            <button
+              onClick={()=> addToCrt(product)}
+            >add to cart</button>
             <h3>{price} zł</h3>
             <p>{description}</p>
           </div>

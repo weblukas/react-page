@@ -13,27 +13,26 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const Store = () => {
-  // const MemoSwiper = memo(Swiper)
+  
 
   const { data, error, isLoading, isSuccess } = useFetchItemsFromAllStores();
-console.log(data);
+// console.log(data);
   
-// const fetchedProducts = data.filter((item)=> {
-//     return item.type === 'fetched'})
+// const fetchedProducts = data.filter((item)=> item.type === 'fetched')
 
-    // console.log(fetchedProducts);
+
   
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const fetchProduct = (uid) => data.find((item) => item.uid === uid);
-  const handleAddItem = (uid) => {
-    // const product = fetchProduct(uid);
-
-    // if (cartItems.includes(product)) {
-    //   return;
-    // }
-    // dispatch(addItem(product));
-  };
+//   const dispatch = useDispatch();
+//   const cartItems = useSelector((state) => state.cart.cartItems);
+//   // const fetchProduct = (uid) => data.find((item) => item.uid === uid);
+  // const handleAddItem = (e) => {
+    
+  //     console.log(e);
+  //   // if (cartItems.includes(fetchedProducts)) {
+  //   //   return;
+  //   // }
+  //   // dispatch(addItem(fetchedProducts));
+  // };
 
 
   return (
@@ -54,18 +53,19 @@ console.log(data);
       >
         {isSuccess &&
           data &&
-          data.map((product) => {
-            const { uid, image, title, description, price } = product;
+          data.filter((item)=> item.type === 'fetched').map((product) => {
+            const { id, image, title, description, price } = product;
             return (
-              <SwiperSlide key={uid}>
+              <SwiperSlide key={id}>
                 <ProductSlider
-                  key={uid}
-                  id={uid}
+                  product={product}
+                  key={id}
+                  id={id}
                   defaultImage={image}
                   title={title}
                   description={description}
                   price={price}
-                  handleAddItem={handleAddItem}
+                  // handleAddItem={handleAddItem}
                 />
               </SwiperSlide>
             );

@@ -37,11 +37,11 @@ export const useFetchItemsFromAllStores = () => {
   const { isLoading, data, error, isSuccess } = useGetStoreItemsQuery();
   useEffect(() => {
     // const { isLoading, data, error, isSuccess } = apiStoreResults;
-    console.log({ isLoading, data, error, isSuccess });
+    // console.log({ isLoading, data, error, isSuccess });
     if (isSuccess && data.length > 0) {
       const fetchedDataWithType = prepData(data, "fetched");
       const featuredDataWithType = prepData(featuredProducts, "featured");
-      console.log([...fetchedDataWithType, ...featuredDataWithType]);
+    //   console.log([...fetchedDataWithType, ...featuredDataWithType]);
       const newData = [...fetchedDataWithType, ...featuredDataWithType];
       setState({
         isLoading,

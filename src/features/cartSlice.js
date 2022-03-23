@@ -7,8 +7,8 @@ const initialState = {
   nrOfItemsInCart: 0,
 };
 
-const getTotalPrice = (cartItems) =>
-  cartItems.reduce((acc, currItem) => acc + currItem.price, 0);
+// const getTotalPrice = (cartItems) =>
+//   cartItems.reduce((acc, currItem) => acc + currItem.price, 0);
 
 
 export const cartSlice = createSlice({
@@ -17,15 +17,15 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       // const uid = action.payload;
-
+      console.log(action.payload); // output undefined
       state.cartItems.push(action.payload);
-      state.total = getTotalPrice(state.cartItems);
-
+      // state.total = getTotalPrice(state.cartItems);
+      
       // state.total += action.payload.price; // to bedzie problematyczne
     },
     removeItem: (state, action) => {
       state.cartItems.splice(action.payload, 1);
-      state.total = getTotalPrice(state.cartItems);
+      // state.total = getTotalPrice(state.cartItems);
       // state.total -= action.payload.price; // to bedzie problematyczne
     },
     removeItems: (state, action) => {
@@ -35,8 +35,8 @@ export const cartSlice = createSlice({
       });
     },
     updateTotal: (state, action) => {
-      const updatedTotal = getTotalPrice(state.cartItems);
-      state.total = updatedTotal;
+      // const updatedTotal = getTotalPrice(state.cartItems);
+      // state.total = updatedTotal;
     },
     updateCartQuantity: (state, action) => {
       const updatedQuantity = state.cartItems.length;
