@@ -1,24 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
 import Overlay from "./overlay/Overlay";
 import { GoX } from "react-icons/go";
-import styled from "styled-components";
-
-const StyledMenu = styled.div`
-  width: 60vw;
-  background-color: #fff;
-  margin: 0;
-  border-radius: 8px;
-  position: relative;
-  z-index: 20;
-`;
-
-const MobileNavList = styled.ul`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-`;
+import { StyledMobileMenu } from "./styles/MobileMenu.styled";
+import { NavLink } from "./styles/MobileMenu.styled";
+import { ModalBtn } from "./styles/MobileMenu.styled";
+import { MobileNavList } from "./styles/MobileMenu.styled";
 
 const dropIn = {
   hidden: { opacity: 0 },
@@ -26,34 +12,13 @@ const dropIn = {
   exit: { opacity: 0 },
 };
 
-const NavLink = styled(Link)`
-  padding: 2rem;
-  text-decoration: none;
-  color: #343360;
-  font-size: 1.3rem;
-  color: #343360;
-`;
-
-const ModalBtn = styled.button`
-  color: #343360;
-  font-size: 2rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  position: absolute;
-  top: 30px;
-  right: 30px;
-`;
-
 const MobileMenu = ({ handleClick }) => {
-
-  const hideModalMenu = ()=>{
-    console.log('klik');
-  }
+  const hideModalMenu = () => {
+    console.log("klik");
+  };
   return (
     <Overlay>
-      <StyledMenu
+      <StyledMobileMenu
         onClick={(e) => e.stopPropagation()}
         variants={dropIn}
         initial="hidden"
@@ -74,7 +39,7 @@ const MobileMenu = ({ handleClick }) => {
         <ModalBtn>
           <GoX onClick={handleClick} />
         </ModalBtn>
-      </StyledMenu>
+      </StyledMobileMenu>
     </Overlay>
   );
 };

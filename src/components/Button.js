@@ -1,24 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import { StyledButton } from "./styles/Button.styled";
 import { motion } from "framer-motion";
 
-
-const StyledButton = styled.button`
-  width: 120px;
-  height: 40px;
-  margin: 1rem;
-  border: none;
-  background-color: #df82d2;
-  border-radius: 7px;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-`;
-
-const Button = ({addToCart}) => {
-
+const Button = ({ addToCart }) => {
   return (
     <StyledButton
       as={motion.button}

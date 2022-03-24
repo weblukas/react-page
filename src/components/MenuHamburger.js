@@ -2,14 +2,7 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoX } from "react-icons/go";
 import { motion } from "framer-motion";
-import styled from "styled-components";
-
-const StyledMenuHamburger = styled.button`
-  background-color: transparent;
-  font-size: 2rem;
-  border: none;
-  cursor: pointer;
-`;
+import { StyledMenuHamburger } from "./styles/MenuHamburger.styled";
 
 const MenuHamburger = ({ handleClick, isMobileMenuOpen }) => {
   return (

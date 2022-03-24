@@ -5,7 +5,7 @@ import Cart from "./pages/Cart";
 import Gallery from "./pages/Gallery";
 import Navbar from "./components/Navbar";
 import Store from "./pages/Store";
-import GlobalStyle from "./components/styles/global";
+import GlobalStyle from "./components/styles/globalStyles";
 
 function App() {
   return (

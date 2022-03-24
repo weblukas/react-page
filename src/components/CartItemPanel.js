@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { StyledCartItemPanel } from "./styles/CartItemPanel.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
 import {
@@ -8,51 +8,6 @@ import {
   removeItems,
 } from "../features/cartSlice";
 
-const StyledCartPanel = styled.div`
-  background-color: #fff;
-  width: 40%;
-  height: 150px;
-  min-width: 500px;
-  margin: 2rem auto;
-  box-shadow: 3px 3px 10px #333;
-  border-radius: 8px;
-  position: relative;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-
-  .thumbnail {
-    width: 100px;
-    max-height: 120px;
-    margin: 20px;
-  }
-
-  .item-amount {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & > * {
-      padding: 10px;
-    }
-
-    & > button {
-      background: transparent;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-  }
-
-  .deleteBtn {
-    font-size: 1.5rem;
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-`;
 
 const findAllMatchingItems = (allItems, searchedItem) =>
   allItems.filter((item) => item.id === searchedItem.id).length;
@@ -88,7 +43,7 @@ const CartItemPanel = ({
   };
 
   return (
-    <StyledCartPanel key={id}>
+    <StyledCartItemPanel key={id}>
       <div>
         <img
           src={defaultImage ? defaultImage : image}
@@ -107,7 +62,7 @@ const CartItemPanel = ({
         <p> zł {price}</p>
       </div>
       <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(id)} />
-    </StyledCartPanel>
+    </StyledCartItemPanel>
   );
 };
 
