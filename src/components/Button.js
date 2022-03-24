@@ -17,15 +17,15 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({ onClick, id }) => {
+const Button = ({addToCart}) => {
 
   return (
     <StyledButton
       as={motion.button}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      onClick={onClick}
-      id={id}
+      onClick={addToCart}
+      // id={id}
       // ref={addItemBtn}
     >
       Add to cart

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
@@ -6,8 +6,6 @@ import {
   addItem,
   removeItem,
   removeItems,
-  updateTotal,
-  updateCartQuantity,
 } from "../features/cartSlice";
 
 const StyledCartPanel = styled.div`
@@ -56,53 +54,41 @@ const StyledCartPanel = styled.div`
   }
 `;
 
- const findAllMatchinItems = (allItems, searchedItem) =>
- allItems.filter((item) => item.uid === searchedItem.uid).length;
+const findAllMatchingItems = (allItems, searchedItem) =>
+  allItems.filter((item) => item.id === searchedItem.id).length;
 
-
-
-const CartItemPanel = ({ cartItem, uid, title, price, index, image, defaultImage }) => {
+const CartItemPanel = ({
+  cartItem,
+  id,
+  title,
+  price,
+  index,
+  image,
+  defaultImage,
+}) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  // const [sameItemCount, setSameItemCount] = useState(1);
-  const sameItemCount = findAllMatchinItems(cartItems, cartItem);
-
-  // const fetchSameProduct = (uid) => cartItems.find((item) => item.uid === uid);
-
+  const sameItemCount = findAllMatchingItems(cartItems, cartItem);
   const handleAddSameItem = () => {
-    // const sameProduct = fetchSameProduct(uid);
     dispatch(addItem(cartItem));
-    // dispatch(updateCartQuantity());
-
-    // setSameItemCount(sameItemCount + 1);
   };
 
   const handleRemoveSameItem = () => {
-    // const sameProduct = fetchSameProduct(uid);
-
     dispatch(removeItem(cartItem));
-    // dispatch(updateCartQuantity());
-    // setSameItemCount(sameItemCount - 1);
-    // dispatch(updateTotal());
-
     if (sameItemCount <= 0) {
-      dispatch(removeItems(uid));
-      dispatch(updateTotal());
-      dispatch(updateCartQuantity());
+      dispatch(removeItems(id));
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
-  const handleRemoveAllSameItems = () => {
+  const handleRemoveAllSameItems = (id) => {
     // const sameItems = fetchSameItems(ItemId);
-
-    dispatch(removeItems(uid));
-    dispatch(updateTotal());
-    dispatch(updateCartQuantity());
+    console.log("remove same items", );
+    dispatch(removeItems(id));
   };
 
   return (
-    <StyledCartPanel key={uid}>
+    <StyledCartPanel key={id}>
       <div>
         <img
           src={defaultImage ? defaultImage : image}
@@ -110,6 +96,7 @@ const CartItemPanel = ({ cartItem, uid, title, price, index, image, defaultImage
           className="thumbnail"
         />
       </div>
+      <p>gdzie jest{id}</p>
       <h4 className="item-name">{title}</h4>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
@@ -119,7 +106,7 @@ const CartItemPanel = ({ cartItem, uid, title, price, index, image, defaultImage
       <div className="item-info">
         <p> zł {price}</p>
       </div>
-      <GoX className="deleteBtn" onClick={handleRemoveAllSameItems} />
+      <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(id)} />
     </StyledCartPanel>
   );
 };

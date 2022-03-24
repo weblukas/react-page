@@ -24,6 +24,13 @@ const StyledGallery = styled.section`
     @media screen and (max-width: 1150px) {
       width: 600px;
     }
+
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      align-items: center;
+      
+     
+    }
   }
 
   .img-container {
@@ -33,6 +40,11 @@ const StyledGallery = styled.section`
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     box-shadow: 5px 5px 40px #c4d2d6;
+
+    @media screen and (max-width: 850px) {
+      height: 300px;
+      
+    }
   }
 `;
 
@@ -79,15 +91,11 @@ const ProductSlider = ({
   // if I have input index I can setimgIndex to index
   // const index = 2;
   const dispatch = useDispatch()
-  const handleClick = () => {
-    
-    
-    
-  };
 
 
 
-  const addToCrt = (product )=>{
+
+  const addToCart = (product )=>{
     console.log('klik home'); 
     dispatch(addItem( product))
   }
@@ -119,10 +127,7 @@ const ProductSlider = ({
         <StyledDescriptionPanel>
           <h1>{title}</h1>
           <div className="btn-container">
-            <Button onClick={handleClick} id={id} />
-            <button
-              onClick={()=> addToCrt(product)}
-            >add to cart</button>
+            <Button addToCart={()=> addToCart(product)} />
             <h3>{price} zł</h3>
             <p>{description}</p>
           </div>

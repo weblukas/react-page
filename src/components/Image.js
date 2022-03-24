@@ -17,6 +17,12 @@ const StyledImage = styled.img`
       left: 30px;
     }
 
+    @media screen and (max-width: 850px ) {
+      width: 150px;
+      position: static;
+      margin-top: 60px;
+    }
+
   .fade-in {
     animation: 0.5s ease 0.5s normal forwards 1 appear;
     opacity: 0;

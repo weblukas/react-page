@@ -21,8 +21,8 @@ const Cart = () => {
   return (
     <>
       <h1>cart</h1>
-      <h3>Your total is {total}</h3>
-      <h3>Items in cart {nrOfItemsInCart}</h3>
+      {total ? <h3>Your total is {total}</h3> : <h3>Your cart is empty</h3>}
+     {total? <h3>Items in cart {nrOfItemsInCart}</h3> : null}
       {displayedCartItems.length > 0 &&
         displayedCartItems.map(
           (cartItem, index) => {

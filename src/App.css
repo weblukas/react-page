@@ -25,10 +25,10 @@
 
 @media screen and (max-width: 900px) {
   .swiper-button-next {
-    display: none;
+    opacity: 0;
   }
 
   .swiper-button-prev {
-    display: none;
+    opacity: 0;
   }
 }

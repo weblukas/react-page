@@ -1,46 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // allItems: data,
   cartItems: [],
   total: 0,
   nrOfItemsInCart: 0,
 };
 
-// const getTotalPrice = (cartItems) =>
-//   cartItems.reduce((acc, currItem) => acc + currItem.price, 0);
-
+const getTotalPrice = (cartItems) =>
+  cartItems.reduce((acc, currItem) => acc + currItem.price, 0);
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addItem: (state, action) => {
-      // const uid = action.payload;
-      console.log(action.payload); // output undefined
       state.cartItems.push(action.payload);
-      // state.total = getTotalPrice(state.cartItems);
-      
-      // state.total += action.payload.price; // to bedzie problematyczne
+      state.total = getTotalPrice(state.cartItems);
+      state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItem: (state, action) => {
       state.cartItems.splice(action.payload, 1);
-      // state.total = getTotalPrice(state.cartItems);
-      // state.total -= action.payload.price; // to bedzie problematyczne
+      state.total = getTotalPrice(state.cartItems);
+      state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItems: (state, action) => {
+
+     console.log(action.payload);// undefined
       state.cartItems = state.cartItems.filter((cartItem) => {
         const removedProductsId = action.payload;
-        return removedProductsId !== cartItem.uid;
+        return removedProductsId !== cartItem.id;
       });
-    },
-    updateTotal: (state, action) => {
-      // const updatedTotal = getTotalPrice(state.cartItems);
-      // state.total = updatedTotal;
-    },
-    updateCartQuantity: (state, action) => {
-      const updatedQuantity = state.cartItems.length;
-      state.nrOfItemsInCart = updatedQuantity;
     },
   },
 });
