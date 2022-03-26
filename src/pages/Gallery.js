@@ -31,13 +31,13 @@ const Gallery = () => {
           data
             .filter((item) => item.type === "featured")
             .map((product) => {
-              const { id, title, price, description, defaultImage, images } =
+              const { uid, title, price, description, defaultImage, images } =
                 product;
               return (
-                <SwiperSlide key={id}>
+                <SwiperSlide key={uid}>
                   <ProductSlider
                     product={product}
-                    id={id}
+                    id={uid}
                     title={title}
                     description={description}
                     defaultImage={defaultImage}

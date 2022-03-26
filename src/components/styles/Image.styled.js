@@ -16,7 +16,7 @@ export const StyledImage = styled.img`
   }
 
   @media screen and (max-width: 850px) {
-    width: 150px;
+    width: 100px;
     position: static;
     margin-top: 60px;
   }

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledNavbar = styled.div`
@@ -11,14 +11,24 @@ export const StyledNavbar = styled.div`
   padding: 0 2rem;
 
   .logo-icon {
-  font-size: 4rem;
-  color: #df82d2;
-}
+    font-size: 4rem;
+    color: #df82d2;
+  }
 
-.cart-icon {
-  margin-left: 10px;
-  
-}
+  .links-list {
+    display: flex;
+  }
+  .cart-icon {
+    margin-left: 10px;
+  }
+
+  .cart-link {
+    display: flex;
+
+    > * {
+      margin-right: 10px;
+    }
+  }
 `;
 
 export const StyledNavLink = styled(Link)`

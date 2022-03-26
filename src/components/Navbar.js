@@ -25,12 +25,18 @@ const Navbar = () => {
           <FaDev className="logo-icon" />
         </NavLink>
         {!isMobile ? (
-          <ul>
+          <ul className="links-list">
             <NavLink to="/">Store</NavLink>
             <NavLink to="/gallery">Premium products</NavLink>
-            <NavLink to="/cart">
+            <NavLink to="/cart" className="cart-link">
+              
+              Cart 
+              <div>
+
+              <FaShoppingCart className="cart-icon" />
+              
+              </div>
               <span>{nrOfItemsInCart}</span>
-              Cart <FaShoppingCart className="cart-icon" />
             </NavLink>
           </ul>
         ) : (

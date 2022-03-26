@@ -28,8 +28,10 @@ export const cartSlice = createSlice({
      console.log(action.payload);// undefined
       state.cartItems = state.cartItems.filter((cartItem) => {
         const removedProductsId = action.payload;
-        return removedProductsId !== cartItem.id;
+        return removedProductsId !== cartItem.uid;
       });
+      state.nrOfItemsInCart = state.cartItems.length;
+      state.total = getTotalPrice(state.cartItems);
     },
   },
 });

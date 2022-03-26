@@ -15,7 +15,7 @@ const ProductSlider = ({
   images,
   defaultImage,
   price,
-  id,
+  uid,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
 

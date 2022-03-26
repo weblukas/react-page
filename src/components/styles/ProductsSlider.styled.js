@@ -6,6 +6,12 @@ export const StyledProductsSlider = styled.section`
   align-items: center;
   justify-items: center;
 
+
+    /* @media screen and (max-width: 850px) {
+      width: 200px;
+      background-color: black;
+    } */
+
   .flex-container {
     display: flex;
     position: relative;
@@ -33,7 +39,10 @@ export const StyledProductsSlider = styled.section`
     box-shadow: 5px 5px 40px #c4d2d6;
 
     @media screen and (max-width: 850px) {
-      height: 300px;
+      height: 0px;
+      position: absolute;
+      top: 50px
+      
     }
   }
 `;
@@ -42,6 +51,13 @@ export const StyledRadioContainer = styled.div`
   position: absolute;
   bottom: 2rem;
   left: 2rem;
+
+  @media screen and (max-width: 850px) {
+      height: 0px;
+      position: absolute;
+      top: 180px;
+      
+    }
 `;
 
 export const StyledDescriptionPanel = styled.section`
@@ -57,6 +73,11 @@ export const StyledDescriptionPanel = styled.section`
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   box-shadow: 0 5px 40px #c4d2d6;
+
+  @media screen and (max-width: 850px) {
+      width: 70%;
+      
+    }
 
   .btn-container {
     padding: 2rem;

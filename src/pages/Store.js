@@ -26,19 +26,20 @@ const Store = () => {
         direction={"horizontal"}
         slidesPerView={1}
         navigation={true}
+        
       >
         {isSuccess &&
           data &&
           data
             .filter((item) => item.type === "fetched")
             .map((product) => {
-              const { id, image, title, description, price } = product;
+              const { uid, image, title, description, price } = product;
               return (
-                <SwiperSlide key={id}>
+                <SwiperSlide key={uid}>
                   <ProductSlider
                     product={product}
-                    key={id}
-                    id={id}
+                    key={uid}
+                    id={uid}
                     defaultImage={image}
                     title={title}
                     description={description}

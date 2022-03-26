@@ -10,11 +10,11 @@ import {
 
 
 const findAllMatchingItems = (allItems, searchedItem) =>
-  allItems.filter((item) => item.id === searchedItem.id).length;
+  allItems.filter((item) => item.uid === searchedItem.uid).length;
 
 const CartItemPanel = ({
   cartItem,
-  id,
+  uid,
   title,
   price,
   index,
@@ -32,18 +32,18 @@ const CartItemPanel = ({
   const handleRemoveSameItem = () => {
     dispatch(removeItem(cartItem));
     if (sameItemCount <= 0) {
-      dispatch(removeItems(id));
+      dispatch(removeItems(uid));
     }
   };
   // usunięcie wszyskich produktów o tym samym ItemId
-  const handleRemoveAllSameItems = (id) => {
+  const handleRemoveAllSameItems = (uid) => {
     // const sameItems = fetchSameItems(ItemId);
     console.log("remove same items", );
-    dispatch(removeItems(id));
+    dispatch(removeItems(uid));
   };
 
   return (
-    <StyledCartItemPanel key={id}>
+    <StyledCartItemPanel key={uid}>
       <div>
         <img
           src={defaultImage ? defaultImage : image}
@@ -51,7 +51,6 @@ const CartItemPanel = ({
           className="thumbnail"
         />
       </div>
-      <p>gdzie jest{id}</p>
       <h4 className="item-name">{title}</h4>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
@@ -61,7 +60,7 @@ const CartItemPanel = ({
       <div className="item-info">
         <p> zł {price}</p>
       </div>
-      <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(id)} />
+      <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(uid)} />
     </StyledCartItemPanel>
   );
 };
