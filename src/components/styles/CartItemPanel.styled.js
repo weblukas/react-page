@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const StyledCartItemPanel = styled.div`
-  background-color: #fff;
   width: 40%;
   height: 150px;
   min-width: 500px;
   margin: 2rem auto;
-  box-shadow: 3px 3px 10px #333;
+  background: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
   border-radius: 8px;
   position: relative;
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledImage = styled.img`
   width: 300px;
   margin-right: 100px;
+  /* box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff; */
 
   @media screen and (max-width: 1150px) {
     max-width: 150px;

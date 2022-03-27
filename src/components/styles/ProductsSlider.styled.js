@@ -4,11 +4,17 @@ export const StyledProductsSlider = styled.section`
   margin-top: 5rem;
 
   .grid-container {
-    margin: 0 auto;
-    width: 60vw;
+    margin: 10px auto;
+    width: 50vw;
+    height: auto;
+    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 150px 50px 100px 50px 200px;
+
+    border-radius: 10px;
+    background: #ecf0f3;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 
     @media screen and (max-width: 1150px) {
       grid-template-columns: 1fr;
