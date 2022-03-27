@@ -1,24 +1,13 @@
 import styled from "styled-components";
 
 export const StyledImage = styled.img`
-  width: 30%;
-  position: absolute;
-  top: 70px;
-  left: 70px;
-
-  @media screen and (max-width: 1550px) {
-    width: 200px;
-  }
+  width: 300px;
+  margin-right: 100px;
 
   @media screen and (max-width: 1150px) {
-    width: 200px;
-    left: 30px;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 100px;
-    position: static;
-    margin-top: 60px;
+    max-width: 150px;
+    grid-column: span 2;
+    margin: 0 auto;
   }
 
   .fade-in {

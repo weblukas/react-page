@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Gallery = () => {
+const PremiumProducts = () => {
   const { data, error, isLoading, isSuccess } = useFetchItemsFromAllStores();
 
   return (
@@ -52,4 +52,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default PremiumProducts;

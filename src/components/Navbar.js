@@ -27,7 +27,7 @@ const Navbar = () => {
         {!isMobile ? (
           <ul className="links-list">
             <NavLink to="/">Store</NavLink>
-            <NavLink to="/gallery">Premium products</NavLink>
+            <NavLink to="/premium">Premium products</NavLink>
             <NavLink to="/cart" className="cart-link">
               
               Cart 

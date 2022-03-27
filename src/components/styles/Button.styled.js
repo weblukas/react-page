@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  justify-self: center;
   width: 120px;
   height: 40px;
   margin: 1rem;
@@ -12,4 +16,8 @@ export const StyledButton = styled.button`
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
+
+  @media screen and (max-width: 1150px) {
+    grid-column: span 2;
+  }
 `;
