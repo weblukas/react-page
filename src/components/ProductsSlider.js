@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "./Image";
 import Button from "./Button";
 import Input from "./Input";
@@ -7,6 +7,9 @@ import { StyledRadioContainer } from "./styles/ProductsSlider.styled";
 import { StyledDescriptionPanel } from "./styles/ProductsSlider.styled";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
+import useMediaQuery from "../helpers/hooks/useMediaQuery";
+import { deviceSize } from "../helpers/responsive/deviceSize";
+
 
 const ProductSlider = ({
   product,
@@ -18,17 +21,21 @@ const ProductSlider = ({
   uid,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [checked, setChecked] = useState(false)
 
+  const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
+  
   const handleChange = (index) => {
     setImgIndex(index);
+    
   };
 
-  // if I have input index I can setimgIndex to index
-  // const index = 2;
-  const dispatch = useDispatch();
+  useEffect(()=>{
+    setChecked(true)
+  },[checked])
 
+  const dispatch = useDispatch();
   const addToCart = (product) => {
-    console.log("klik home");
     dispatch(addItem(product));
   };
 
@@ -50,7 +57,7 @@ const ProductSlider = ({
                     key={index}
                     // checked={isSelected("black")}
                     // value={index}
-                    handleChange={() => handleChange(index)}
+                    handleChange={() => handleChange(index, checked)}
                   />
                 );
               })}
@@ -61,7 +68,7 @@ const ProductSlider = ({
           <div className="btn-container">
             <Button addToCart={() => addToCart(product)} />
             <h3>{price} zł</h3>
-            <p>{description}</p>
+            <p>{isMobile ? `${description.replace(/^(.{150}[^\s]*).*/, "$1")} ...` : description}</p>
           </div>
         </StyledDescriptionPanel>
       </div>

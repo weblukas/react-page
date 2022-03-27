@@ -13,6 +13,7 @@ function App() {
 
     <div className="App">
       <GlobalStyle />
+     
       <Navbar />
       <Routes>
         <Route path="/" element={<Store />} />

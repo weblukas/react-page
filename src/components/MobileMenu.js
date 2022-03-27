@@ -1,5 +1,5 @@
 import React from "react";
-import Overlay from "./overlay/Overlay";
+import  Overlay  from "./overlay/Overlay"
 import { GoX } from "react-icons/go";
 import { StyledMobileMenu } from "./styles/MobileMenu.styled";
 import { NavLink } from "./styles/MobileMenu.styled";
@@ -13,9 +13,7 @@ const dropIn = {
 };
 
 const MobileMenu = ({ handleClick }) => {
-  const hideModalMenu = () => {
-    console.log("klik");
-  };
+  const hideModalMenu = () => {};
   return (
     <Overlay>
       <StyledMobileMenu

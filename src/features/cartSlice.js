@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const getTotalPrice = (cartItems) =>
-  cartItems.reduce((acc, currItem) => acc + currItem.price, 0);
+ ( cartItems.reduce((acc, currItem) => acc + currItem.price, 0)).toFixed(2);
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -24,8 +24,6 @@ export const cartSlice = createSlice({
       state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItems: (state, action) => {
-
-     console.log(action.payload);// undefined
       state.cartItems = state.cartItems.filter((cartItem) => {
         const removedProductsId = action.payload;
         return removedProductsId !== cartItem.uid;

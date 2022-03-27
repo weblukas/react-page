@@ -35,10 +35,8 @@ const CartItemPanel = ({
       dispatch(removeItems(uid));
     }
   };
-  // usunięcie wszyskich produktów o tym samym ItemId
+ 
   const handleRemoveAllSameItems = (uid) => {
-    // const sameItems = fetchSameItems(ItemId);
-    console.log("remove same items", );
     dispatch(removeItems(uid));
   };
 
@@ -51,14 +49,14 @@ const CartItemPanel = ({
           className="thumbnail"
         />
       </div>
-      <h4 className="item-name">{title}</h4>
+      <h3 className="item-name">{title}</h3>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>
         <button onClick={handleAddSameItem}>+</button>
       </div>
       <div className="item-info">
-        <p> zł {price}</p>
+        <h3> zł {price}</h3>
       </div>
       <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(uid)} />
     </StyledCartItemPanel>
