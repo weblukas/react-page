@@ -5,6 +5,7 @@ import featuredProducts from "../data/featured-products";
 export const storeItemsApi = createApi({
   reducerPath: "products",
   baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com" }),
+  keepUnusedDataFor: 8000,
   endpoints: (builder) => ({
     getStoreItems: builder.query({
       query: () => `products/category/electronics`,

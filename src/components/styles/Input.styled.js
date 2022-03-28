@@ -16,30 +16,27 @@ export const StyledInput = styled.input`
   }
 
   &:nth-child(1)::after {
-    background-color: black;
+    background-color: ${props => (props.color)};
   }
 
   &:nth-child(2)::after {
-    background-color: #e33a3f;
+    background-color: ${props => (props.color)};
   }
 
   &:nth-child(3)::after {
-    background-color: #90ae9e;
+    background-color: ${props => (props.color)};
   }
 
-  &:nth-child(4)::after {
-    background-color: #3d5367;
-  }
   &::before {
     content: "";
     display: block;
     width: 30px;
     height: 30px;
-    background-color: #df82d2;
+    background-color: green;
     opacity: 0;
     border-radius: 50%;
     transform: translate(-9px, -9px);
-    z-index: 5;
+    z-index: 105;
   }
 
   &:checked::before {

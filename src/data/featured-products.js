@@ -6,8 +6,8 @@ const storeItems = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       defaultImage: "images/black.png",
-      images: ["images/black.png", "images/green.png", "images/blue.png"],
-      colors: ["black", "green", "blue"]
+      images: ["images/black.png","images/blue.png", "images/green.png" ],
+      colors: ["black", "#4B76A5", "#7FA79B"]
     
   },
   {
@@ -18,7 +18,7 @@ const storeItems = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       defaultImage: "images/black-sony.png",
       images: [ "images/black-sony.png", "images/sony-blue.png"],
-      colors: ["black", "blue"]
+      colors: ["black", "#3C648F"]
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const storeItems = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       defaultImage: "images/mysony1.png",
       images: ["images/mysony1.png", "images/mysony2.png"],
-      colors: [ "black", "white"]
+      colors: [ "black", "#E2ED8E"]
   },
 ];
 
