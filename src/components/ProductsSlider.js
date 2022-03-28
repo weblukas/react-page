@@ -4,12 +4,11 @@ import Button from "./Button";
 import Input from "./Input";
 import { StyledProductsSlider } from "./styles/ProductsSlider.styled";
 import { StyledRadioContainer } from "./styles/ProductsSlider.styled";
-import { StyledDescriptionPanel } from "./styles/ProductsSlider.styled";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
-
+import { logDOM } from "@testing-library/react";
 
 const ProductSlider = ({
   product,
@@ -19,20 +18,21 @@ const ProductSlider = ({
   defaultImage,
   price,
   uid,
+  colors
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
-  
-  const handleChange = (index) => {
+
+  const handleChange = (index, color) => {
     setImgIndex(index);
-    
+    console.log(color)
   };
 
-  useEffect(()=>{
-    setChecked(true)
-  },[checked])
+  useEffect(() => {
+    setChecked(true);
+  }, [checked]);
 
   const dispatch = useDispatch();
   const addToCart = (product) => {
@@ -41,7 +41,7 @@ const ProductSlider = ({
 
   return (
     <StyledProductsSlider>
-      <div className="flex-container">
+      <div className="grid-container">
         <div className="img-container">
           <Image
             src={!images ? defaultImage : images[imgIndex]}
@@ -50,27 +50,30 @@ const ProductSlider = ({
           />
 
           <StyledRadioContainer>
-            {images &&
-              images.map((image, index) => {
+            {colors &&
+              colors.map((color, index) => {
+                
                 return (
                   <Input
                     key={index}
                     // checked={isSelected("black")}
-                    // value={index}
-                    handleChange={() => handleChange(index, checked)}
+                    value={color}
+                    handleChange={() => handleChange(index, checked, color)}
                   />
                 );
               })}
           </StyledRadioContainer>
         </div>
-        <StyledDescriptionPanel>
-          <h1>{title}</h1>
-          <div className="btn-container">
-            <Button addToCart={() => addToCart(product)} />
-            <h3>{price} zł</h3>
-            <p>{isMobile ? `${description.replace(/^(.{150}[^\s]*).*/, "$1")} ...` : description}</p>
-          </div>
-        </StyledDescriptionPanel>
+
+        <h1 className="title">{isMobile? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}</h1>
+
+        <Button addToCart={() => addToCart(product)} />
+        <h3 className="price">{price} zł</h3>
+        <p className="description">
+          {isMobile
+            ? `${description.replace(/^(.{150}[^\s]*).*/, "$1")} ...`
+            : description}
+        </p>
       </div>
     </StyledProductsSlider>
   );

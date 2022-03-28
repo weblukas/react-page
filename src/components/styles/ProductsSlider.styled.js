@@ -2,47 +2,81 @@ import styled from "styled-components";
 
 export const StyledProductsSlider = styled.section`
   margin-top: 5rem;
-  display: grid;
-  align-items: center;
-  justify-items: center;
 
+  .grid-container {
+    width: 60vw;
+    height: auto;
+    margin: 10px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 5px 100px 50px 200px;
 
-    /* @media screen and (max-width: 850px) {
-      width: 200px;
-      background-color: black;
-    } */
-
-  .flex-container {
-    display: flex;
-    position: relative;
-
-    @media screen and (max-width: 1550px) {
-      width: 800px;
-    }
+    border-radius: 10px;
+    background: #ecf0f3;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 
     @media screen and (max-width: 1150px) {
-      width: 600px;
+      width: 65vw;
+      grid-template-columns: 1fr;
+      grid-template-rows: 150px 200px 100px 50px 200px;
     }
 
-    @media screen and (max-width: 850px) {
-      flex-direction: column;
-      align-items: center;
+    @media screen and (max-width: 1450px) {
+      width: 75vw;
+    }
+
+    @media screen and (max-width: 350px) {
+      width: 100vw;
     }
   }
 
   .img-container {
-    width: 400px;
-    height: 630px;
-    /* background-color: #d9d9d9; */
+    grid-column: 1;
+    grid-row: 1/-1;
+    display: grid;
+    align-items: center;
+    justify-content: end;
+
+    position: relative;
+
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    box-shadow: 5px 5px 40px #c4d2d6;
 
-    @media screen and (max-width: 850px) {
-      height: 0px;
-      position: absolute;
-      top: 50px
-      
+    @media screen and (max-width: 1150px) {
+      grid-row: 2;
+      grid-column: span 2;
+      justify-content: center;
+    }
+  }
+
+  .title {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    padding: 0 40px;
+
+    @media screen and (max-width: 1150px) {
+      grid-column: span 2;
+    }
+  }
+
+  .price {
+    grid-column: 2;
+    grid-row: 4;
+    @media screen and (max-width: 1150px) {
+      grid-column: span 2;
+    }
+  }
+
+  .description {
+    grid-column: 2;
+    grid-row: 5;
+    padding: 0 40px;
+    font-size: 18px;
+
+    @media screen and (max-width: 1150px) {
+      grid-column: span 2;
     }
   }
 `;
@@ -53,31 +87,10 @@ export const StyledRadioContainer = styled.div`
   left: 2rem;
 
   @media screen and (max-width: 850px) {
-      height: 0px;
-      position: absolute;
-      top: 180px;
-      
-    }
-`;
-
-export const StyledDescriptionPanel = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #e5e9e8;
-  color: #000;
-  font-size: 1.3rem;
-  width: 550px;
-  height: 590px;
-  margin-top: 20px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 0 5px 40px #c4d2d6;
-
-  @media screen and (max-width: 850px) {
-      width: 70%;
-      
-    }
+    height: 0px;
+    position: absolute;
+    top: 180px;
+  }
 
   .btn-container {
     padding: 2rem;

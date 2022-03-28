@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { StyledInput } from "./styles/Input.styled";
 
 const Input = ({ value, defaultChecked, handleChange, checked }) => {

@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Gallery = () => {
+const PremiumProducts = () => {
   const { data, error, isLoading, isSuccess } = useFetchItemsFromAllStores();
 
   return (
@@ -31,7 +31,7 @@ const Gallery = () => {
           data
             .filter((item) => item.type === "featured")
             .map((product) => {
-              const { uid, title, price, description, defaultImage, images } =
+              const { uid, title, price, description, defaultImage, images, colors } =
                 product;
               return (
                 <SwiperSlide key={uid}>
@@ -43,6 +43,7 @@ const Gallery = () => {
                     defaultImage={defaultImage}
                     images={images}
                     price={price}
+                    colors={colors}
                   />
                 </SwiperSlide>
               );
@@ -52,4 +53,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default PremiumProducts;
