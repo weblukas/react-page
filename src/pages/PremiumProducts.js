@@ -31,7 +31,7 @@ const PremiumProducts = () => {
           data
             .filter((item) => item.type === "featured")
             .map((product) => {
-              const { uid, title, price, description, defaultImage, images } =
+              const { uid, title, price, description, defaultImage, images, colors } =
                 product;
               return (
                 <SwiperSlide key={uid}>
@@ -43,6 +43,7 @@ const PremiumProducts = () => {
                     defaultImage={defaultImage}
                     images={images}
                     price={price}
+                    colors={colors}
                   />
                 </SwiperSlide>
               );

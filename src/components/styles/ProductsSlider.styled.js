@@ -4,21 +4,30 @@ export const StyledProductsSlider = styled.section`
   margin-top: 5rem;
 
   .grid-container {
-    margin: 10px auto;
-    width: 50vw;
+    width: 60vw;
     height: auto;
-    
+    margin: 10px auto;
+    padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 150px 50px 100px 50px 200px;
+    grid-template-rows: 150px 5px 100px 50px 200px;
 
     border-radius: 10px;
     background: #ecf0f3;
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 
     @media screen and (max-width: 1150px) {
+      width: 65vw;
       grid-template-columns: 1fr;
       grid-template-rows: 150px 200px 100px 50px 200px;
+    }
+
+    @media screen and (max-width: 1450px) {
+      width: 75vw;
+    }
+
+    @media screen and (max-width: 350px) {
+      width: 100vw;
     }
   }
 

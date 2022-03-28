@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
+import { logDOM } from "@testing-library/react";
 
 const ProductSlider = ({
   product,
@@ -17,14 +18,16 @@ const ProductSlider = ({
   defaultImage,
   price,
   uid,
+  colors
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [checked, setChecked] = useState(false);
 
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
 
-  const handleChange = (index) => {
+  const handleChange = (index, color) => {
     setImgIndex(index);
+    console.log(color)
   };
 
   useEffect(() => {
@@ -47,21 +50,22 @@ const ProductSlider = ({
           />
 
           <StyledRadioContainer>
-            {images &&
-              images.map((image, index) => {
+            {colors &&
+              colors.map((color, index) => {
+                
                 return (
                   <Input
                     key={index}
                     // checked={isSelected("black")}
-                    // value={index}
-                    handleChange={() => handleChange(index, checked)}
+                    value={color}
+                    handleChange={() => handleChange(index, checked, color)}
                   />
                 );
               })}
           </StyledRadioContainer>
         </div>
 
-        <h1 className="title">{title}</h1>
+        <h1 className="title">{isMobile? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}</h1>
 
         <Button addToCart={() => addToCart(product)} />
         <h3 className="price">{price} zł</h3>
