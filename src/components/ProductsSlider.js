@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
-import { logDOM } from "@testing-library/react";
+
 
 const ProductSlider = ({
   product,
@@ -18,7 +18,7 @@ const ProductSlider = ({
   defaultImage,
   price,
   uid,
-  colors
+  colors,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [checked, setChecked] = useState(false);
@@ -26,12 +26,13 @@ const ProductSlider = ({
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
 
   const handleChange = (index, color) => {
+    console.log(color);
     setImgIndex(index);
-    console.log(color)
+    setChecked(true)
   };
 
   useEffect(() => {
-    setChecked(true);
+    // muszę dodać tu handleChange i uzyskać fade-in animation
   }, [checked]);
 
   const dispatch = useDispatch();
@@ -45,27 +46,28 @@ const ProductSlider = ({
         <div className="img-container">
           <Image
             src={!images ? defaultImage : images[imgIndex]}
-            // isSelected={isSelected}
-            className={` gallery-img ${"fade-in"}`}
+            // className={` gallery-img ${"fade-in"}`}
           />
 
           <StyledRadioContainer>
             {colors &&
               colors.map((color, index) => {
-                
                 return (
                   <Input
                     key={index}
-                    // checked={isSelected("black")}
+                    defaultChecked={0}
+                    checked={false}
                     value={color}
-                    handleChange={() => handleChange(index, checked, color)}
+                    handleChange={() => handleChange(index, color)}
                   />
                 );
               })}
           </StyledRadioContainer>
         </div>
 
-        <h1 className="title">{isMobile? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}</h1>
+        <h1 className="title">
+          {isMobile ? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}
+        </h1>
 
         <Button addToCart={() => addToCart(product)} />
         <h3 className="price">{price} zł</h3>

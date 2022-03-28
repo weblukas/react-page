@@ -19,7 +19,7 @@ const Store = () => {
 
       <Swiper
         modules={[Navigation, Scrollbar, A11y, Mousewheel, Keyboard]}
-        spaceBetween={30}
+        spaceBetween={50}
         keyboard={{ enabled: true }}
         mousewheel={false}
         loop={true}
