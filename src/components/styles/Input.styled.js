@@ -16,15 +16,15 @@ export const StyledInput = styled.input`
   }
 
   &:nth-child(1)::after {
-    background-color: ${props => (props.color)};
+    background-color: ${(props) => props.color};
   }
 
   &:nth-child(2)::after {
-    background-color: ${props => (props.color)};
+    background-color: ${(props) => props.color};
   }
 
   &:nth-child(3)::after {
-    background-color: ${props => (props.color)};
+    background-color: ${(props) => props.color};
   }
 
   &::before {

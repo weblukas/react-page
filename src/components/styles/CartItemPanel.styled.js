@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const StyledCartItemPanel = styled.div`
-  width: 40%;
-  height: 150px;
-  min-width: 500px;
+  height: 160px;
+  max-width: 600px;
   margin: 2rem auto;
   background: #ecf0f3;
   box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
@@ -13,6 +12,12 @@ export const StyledCartItemPanel = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
+
+  @media screen and (max-width: 600px) {
+    height: 300px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 150px;
+  }
 
   .thumbnail {
     width: 100px;
