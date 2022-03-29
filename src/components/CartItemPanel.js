@@ -2,6 +2,8 @@ import React from "react";
 import { StyledCartItemPanel } from "./styles/CartItemPanel.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
+import useMediaQuery from "../helpers/hooks/useMediaQuery";
+import { deviceSize } from "../helpers/responsive/deviceSize";
 import {
   addItem,
   removeItem,
@@ -21,6 +23,8 @@ const CartItemPanel = ({
   image,
   defaultImage,
 }) => {
+
+  const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -49,7 +53,7 @@ const CartItemPanel = ({
           className="thumbnail"
         />
       </div>
-      <h3 className="item-name">{title}</h3>
+      <h3 className="item-name"> {isMobile ? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}</h3>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>

@@ -26,7 +26,6 @@ const Store = () => {
         direction={"horizontal"}
         slidesPerView={1}
         navigation={true}
-        
       >
         {isSuccess &&
           data &&
@@ -44,7 +43,6 @@ const Store = () => {
                     title={title}
                     description={description}
                     price={price}
-                   
                   />
                 </SwiperSlide>
               );

@@ -9,7 +9,6 @@ import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
 
-
 const ProductSlider = ({
   product,
   title,
@@ -28,7 +27,7 @@ const ProductSlider = ({
   const handleChange = (index, color) => {
     console.log(color);
     setImgIndex(index);
-    setChecked(true)
+    setChecked(true);
   };
 
   useEffect(() => {
