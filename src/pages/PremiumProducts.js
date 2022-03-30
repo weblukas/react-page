@@ -1,33 +1,33 @@
 import React from "react";
 import { useFetchItemsFromAllStores } from "../helpers/api";
-import ProductSlider from "../components/ProductsSlide";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Navigation, Scrollbar } from "swiper";
+import ProductSlide from "../components/ProductsSlide";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
+export const Slidersettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+
 
 const PremiumProducts = () => {
   const { data, error, isLoading, isSuccess } = useFetchItemsFromAllStores();
+
+ 
 
   return (
     <>
       <h1>Premium store</h1>
       {isLoading && "Loading..."}
       {error && <h2>Somethig went wrong</h2>}
-      <Swiper
-        modules={[Navigation, Keyboard]}
-        spaceBetween={50}
-       
-        keyboard={{ enabled: true }}
-        // allowTouchMove={false}
-        loop={true}
-        direction={"horizontal"}
-         slidesPerView={1}
 
-        // navigation={true}
-      >
+      <Slider {...Slidersettings}>
         {isSuccess &&
           data &&
           data
@@ -43,21 +43,20 @@ const PremiumProducts = () => {
                 colors,
               } = product;
               return (
-                <SwiperSlide key={uid}>
-                  <ProductSlider
-                    product={product}
-                    id={uid}
-                    title={title}
-                    description={description}
-                    defaultImage={defaultImage}
-                    images={images}
-                    price={price}
-                    colors={colors}
-                  />
-                </SwiperSlide>
+                <ProductSlide
+                  key={uid}
+                  product={product}
+                  id={uid}
+                  title={title}
+                  description={description}
+                  defaultImage={defaultImage}
+                  images={images}
+                  price={price}
+                  colors={colors}
+                ></ProductSlide>
               );
             })}
-      </Swiper>
+      </Slider>
     </>
   );
 };

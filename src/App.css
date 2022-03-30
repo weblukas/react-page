@@ -6,29 +6,3 @@
   /* background-color: #d7e6f1; */
 }
 
-.swiper-button-next {
-  margin-right: 13rem;
-}
-
-.swiper-button-prev {
-  margin-left: 13rem;
-}
-@media screen and (max-width: 1550px) {
-  .swiper-button-next {
-    margin-right: 5rem;
-  }
-
-  .swiper-button-prev {
-    margin-left: 5rem;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .swiper-button-next {
-    opacity: 0;
-  }
-
-  .swiper-button-prev {
-    opacity: 0;
-  }
-}
