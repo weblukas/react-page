@@ -30,9 +30,9 @@ const ProductSlide = ({
     setCheckedIndex(index);
   };
 
-  useEffect(() => {
-    // muszę dodać tu handleChange i uzyskać fade-in animation
-  }, [checkedIndex]);
+  // useEffect(() => {
+  //   // muszę dodać tu handleChange i uzyskać fade-in animation
+  // }, [checkedIndex]);
 
   const dispatch = useDispatch();
   const addToCart = (product) => {

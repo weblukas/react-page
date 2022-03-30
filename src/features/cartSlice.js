@@ -23,11 +23,7 @@ export const cartSlice = createSlice({
       const foundedItem = state.cartItems
         .map(({ uid }) => uid)
         .lastIndexOf(action.payload.uid);
-      // console.log({
-      //   payloaduid: action.payload.uid,
-      //   cartItems: JSON.parse(JSON.stringify(state.cartItems)),
-      //   foundedItem,
-      // });
+  
       state.cartItems.splice(foundedItem, 1);
       state.total = getTotalPrice(state.cartItems);
       state.nrOfItemsInCart = state.cartItems.length;

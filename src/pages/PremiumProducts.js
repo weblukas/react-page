@@ -24,9 +24,9 @@ const PremiumProducts = () => {
         // allowTouchMove={false}
         loop={true}
         direction={"horizontal"}
-        slidesPerView={1}
+         slidesPerView={1}
 
-        navigation
+        // navigation={true}
       >
         {isSuccess &&
           data &&
