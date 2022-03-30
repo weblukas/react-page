@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledProductsSlider = styled.section`
+export const StyledProductsSlide = styled.section`
   margin-top: 5rem;
 
   .grid-container {

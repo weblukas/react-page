@@ -36,7 +36,12 @@ export const StyledInput = styled.input`
     opacity: 0;
     border-radius: 50%;
     transform: translate(-9px, -9px);
+    transition: all 0.5s ease;
     z-index: 105;
+  }
+
+  &:checked {
+    opacity: 0.2 !important;
   }
 
   &:checked::before {

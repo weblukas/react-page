@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Image from "./Image";
 import Button from "./Button";
 import Input from "./Input";
-import { StyledProductsSlider } from "./styles/ProductsSlider.styled";
-import { StyledRadioContainer } from "./styles/ProductsSlider.styled";
+import { StyledProductsSlide } from "./styles/ProductsSlide.styled";
+import { StyledRadioContainer } from "./styles/ProductsSlide.styled";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
 
-const ProductSlider = ({
+const ProductSlide = ({
   product,
   title,
   description,
@@ -20,19 +20,19 @@ const ProductSlider = ({
   colors,
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
-  const [checked, setChecked] = useState(false);
+  const [checkedIndex, setCheckedIndex] = useState(null);
 
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
 
   const handleChange = (index, color) => {
     console.log(color);
     setImgIndex(index);
-    setChecked(true);
+    setCheckedIndex(index);
   };
 
   useEffect(() => {
     // muszę dodać tu handleChange i uzyskać fade-in animation
-  }, [checked]);
+  }, [checkedIndex]);
 
   const dispatch = useDispatch();
   const addToCart = (product) => {
@@ -40,7 +40,7 @@ const ProductSlider = ({
   };
 
   return (
-    <StyledProductsSlider>
+    <StyledProductsSlide>
       <div className="grid-container">
         <div className="img-container">
           <Image
@@ -51,11 +51,16 @@ const ProductSlider = ({
           <StyledRadioContainer>
             {colors &&
               colors.map((color, index) => {
+                const isSomeChecked = checkedIndex != null;
+                const isCurrentChecked =
+                  isSomeChecked && checkedIndex === index;
+                console.log(isSomeChecked, isCurrentChecked);
                 return (
                   <Input
                     key={index}
-                    defaultChecked={0}
-                    checked={false}
+                    name={uid}
+                    // defaultChecked={0}
+                    checked={isCurrentChecked}
                     value={color}
                     handleChange={() => handleChange(index, color)}
                   />
@@ -76,8 +81,8 @@ const ProductSlider = ({
             : description}
         </p>
       </div>
-    </StyledProductsSlider>
+    </StyledProductsSlide>
   );
 };
 
-export default ProductSlider;
+export default ProductSlide;

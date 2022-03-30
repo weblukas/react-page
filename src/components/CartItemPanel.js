@@ -38,6 +38,7 @@ const CartItemPanel = ({
     if (sameItemCount <= 0) {
       dispatch(removeItems(uid));
     }
+    console.log(sameItemCount);
   };
  
   const handleRemoveAllSameItems = (uid) => {

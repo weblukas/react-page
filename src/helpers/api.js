@@ -42,7 +42,8 @@ export const useFetchItemsFromAllStores = () => {
     if (isSuccess && data.length > 0) {
       const fetchedDataWithType = prepData(data, "fetched");
       const featuredDataWithType = prepData(featuredProducts, "featured");
-    //   console.log([...fetchedDataWithType, ...featuredDataWithType]);
+      // console.log({ fetchedDataWithType, featuredDataWithType });
+      //   console.log([...fetchedDataWithType, ...featuredDataWithType]);
       const newData = [...fetchedDataWithType, ...featuredDataWithType];
       setState({
         isLoading,

@@ -1,5 +1,5 @@
 import React from "react";
-import ProductSlider from "../components/ProductsSlider";
+import ProductSlide from "../components/ProductsSlide";
 import { useFetchItemsFromAllStores } from "../helpers/api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y, Mousewheel, Keyboard } from "swiper";
@@ -18,10 +18,9 @@ const Store = () => {
       {error && <h2>Somethig went wrong</h2>}
 
       <Swiper
-        modules={[Navigation, Scrollbar, A11y, Mousewheel, Keyboard]}
+        modules={[Navigation, Keyboard]}
         spaceBetween={50}
-        keyboard={{ enabled: true }}
-        mousewheel={false}
+        // keyboard={{ enabled: true }}
         loop={true}
         direction={"horizontal"}
         slidesPerView={1}
@@ -35,7 +34,7 @@ const Store = () => {
               const { uid, image, title, description, price } = product;
               return (
                 <SwiperSlide key={uid}>
-                  <ProductSlider
+                  <ProductSlide
                     product={product}
                     key={uid}
                     id={uid}

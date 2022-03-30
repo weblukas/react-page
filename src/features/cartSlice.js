@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const getTotalPrice = (cartItems) =>
- ( cartItems.reduce((acc, currItem) => acc + currItem.price, 0)).toFixed(2);
+  cartItems.reduce((acc, currItem) => acc + currItem.price, 0).toFixed(2);
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -19,13 +19,23 @@ export const cartSlice = createSlice({
       state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItem: (state, action) => {
-      state.cartItems.splice(action.payload, 1);
+      // console.log(action.payload.uid);
+      const foundedItem = state.cartItems
+        .map(({ uid }) => uid)
+        .lastIndexOf(action.payload.uid);
+      // console.log({
+      //   payloaduid: action.payload.uid,
+      //   cartItems: JSON.parse(JSON.stringify(state.cartItems)),
+      //   foundedItem,
+      // });
+      state.cartItems.splice(foundedItem, 1);
       state.total = getTotalPrice(state.cartItems);
       state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItems: (state, action) => {
       state.cartItems = state.cartItems.filter((cartItem) => {
         const removedProductsId = action.payload;
+        console.log(removedProductsId);
         return removedProductsId !== cartItem.uid;
       });
       state.nrOfItemsInCart = state.cartItems.length;
