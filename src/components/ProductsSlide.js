@@ -25,7 +25,6 @@ const ProductSlide = ({
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
 
   const handleChange = (index, color) => {
-    console.log(color);
     setImgIndex(index);
     setCheckedIndex(index);
   };
@@ -45,7 +44,7 @@ const ProductSlide = ({
         <div className="img-container">
           <Image
             src={!images ? defaultImage : images[imgIndex]}
-            // className={` gallery-img ${"fade-in"}`}
+             className="fade-in"
           />
 
           <StyledRadioContainer>
@@ -54,12 +53,12 @@ const ProductSlide = ({
                 const isSomeChecked = checkedIndex != null;
                 const isCurrentChecked =
                   isSomeChecked && checkedIndex === index;
-                console.log(isSomeChecked, isCurrentChecked);
+
                 return (
                   <Input
                     key={index}
                     name={uid}
-                    // defaultChecked={0}
+                    defaultChecked={0}
                     checked={isCurrentChecked}
                     value={color}
                     handleChange={() => handleChange(index, color)}

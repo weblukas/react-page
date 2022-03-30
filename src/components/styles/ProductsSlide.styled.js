@@ -4,7 +4,7 @@ export const StyledProductsSlide = styled.section`
   margin-top: 5rem;
 
   .grid-container {
-    width: 60vw;
+    width: 50vw;
     height: auto;
     margin: 10px auto;
     padding: 20px;

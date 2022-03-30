@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledMobileMenu = styled.div`
-  width: 60vw;
+  width: 80vw;
   background-color: #fff;
   margin: 0;
   border-radius: 8px;

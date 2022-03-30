@@ -9,7 +9,7 @@ const Input = ({ value, defaultChecked, handleChange, checked }) => {
       checked={checked}
       color={value}
       onChange={handleChange}
-     
+     defaultChecked={defaultChecked}
     />
   );
 };

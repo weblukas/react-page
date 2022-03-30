@@ -13,7 +13,7 @@ const dropIn = {
 };
 
 const MobileMenu = ({ handleClick }) => {
-  const hideModalMenu = () => {};
+  
   return (
     <Overlay>
       <StyledMobileMenu
@@ -24,13 +24,13 @@ const MobileMenu = ({ handleClick }) => {
         exit="exit"
       >
         <MobileNavList>
-          <NavLink to="/" className="nav-link" onClick={hideModalMenu}>
+          <NavLink to="/" className="nav-link" onClick={handleClick}>
             Store
           </NavLink>
-          <NavLink to="/gallery" className="nav-link">
+          <NavLink to="/premium" className="nav-link" onClick={handleClick}>
             Premium products
           </NavLink>
-          <NavLink to="/blog" className="nav-link">
+          <NavLink to="/cart" className="nav-link" onClick={handleClick}>
             Cart
           </NavLink>
         </MobileNavList>
