@@ -35,7 +35,7 @@ export const StyledInput = styled.input`
     background-color: white;
     opacity: 0;
     border-radius: 50%;
-    box-shadow: 3px 3px 10px #cbced5;
+    box-shadow: 5px 5px 10px #cbced5;
     transform: translate(-9px, -9px);
     transition: all 0.2s ease;
     z-index: 10;

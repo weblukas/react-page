@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "./Image";
 import Button from "./Button";
 import Input from "./Input";
@@ -38,6 +38,7 @@ const ProductSlide = ({
     dispatch(addItem(product));
   };
 
+  // const [defaultChecked, setDefaultChecked] = useState(0)
   return (
     <StyledProductsSlide>
       <div className="grid-container">
@@ -54,11 +55,13 @@ const ProductSlide = ({
                 const isCurrentChecked =
                   isSomeChecked && checkedIndex === index;
 
+                
+
                 return (
                   <Input
                     key={index}
                     name={uid}
-                    defaultChecked={0}
+                    // defaultChecked={defaultChecked}
                     checked={isCurrentChecked}
                     value={color}
                     handleChange={() => handleChange(index, color)}
