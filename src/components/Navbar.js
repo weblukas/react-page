@@ -11,9 +11,9 @@ import { deviceSize } from "../helpers/responsive/deviceSize";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false); 
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
-  const nrOfItemsInCart = useSelector((state) => state.cart.nrOfItemsInCart);
+  const nrOfItemsInCart = useSelector((state) => state.cart.nrOfItemsInCart); 
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
@@ -29,12 +29,9 @@ const Navbar = () => {
             <NavLink to="/">Store</NavLink>
             <NavLink to="/premium">Premium products</NavLink>
             <NavLink to="/cart" className="cart-link">
-              
-              Cart 
+              Cart
               <div>
-
-              <FaShoppingCart className="cart-icon" />
-              
+                <FaShoppingCart className="cart-icon" />
               </div>
               <span>{nrOfItemsInCart}</span>
             </NavLink>

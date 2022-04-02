@@ -6,7 +6,7 @@
 * Redux Toolkit
 * RTK Query
 * Styled Components
-* Swiper React
+* React Slick
 * Framer Motion
 
 ## Setup

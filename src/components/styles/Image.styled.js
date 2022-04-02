@@ -11,8 +11,7 @@ export const StyledImage = styled.img`
   }
 
   .fade-in {
-    animation: 0.5s ease 0.5s normal forwards 1 appear;
-    opacity: 0;
+    animation: 2.5s ease 2.5s normal forwards 1 appear;
   }
 
   @keyframes appear {

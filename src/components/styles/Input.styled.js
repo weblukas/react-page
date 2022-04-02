@@ -41,10 +41,6 @@ export const StyledInput = styled.input`
     z-index: 10;
   }
 
-  /* &:checked {
-    opacity: 0.2 !important;
-  } */
-
   &:checked::before {
     opacity: 1;
   }

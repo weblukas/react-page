@@ -29,39 +29,29 @@ const ProductSlide = ({
     setCheckedIndex(index);
   };
 
-  // useEffect(() => {
-  //   // muszę dodać tu handleChange i uzyskać fade-in animation
-  // }, [checkedIndex]);
-
   const dispatch = useDispatch();
   const addToCart = (product) => {
     dispatch(addItem(product));
   };
 
-  // const [defaultChecked, setDefaultChecked] = useState(0)
   return (
     <StyledProductsSlide>
       <div className="grid-container">
         <div className="img-container">
           <Image
             src={!images ? defaultImage : images[imgIndex]}
-             className="fade-in"
+            className="fade-in"
           />
-
           <StyledRadioContainer>
             {colors &&
               colors.map((color, index) => {
                 const isSomeChecked = checkedIndex != null;
                 const isCurrentChecked =
                   isSomeChecked && checkedIndex === index;
-
-                
-
                 return (
                   <Input
                     key={index}
                     name={uid}
-                    // defaultChecked={defaultChecked}
                     checked={isCurrentChecked}
                     value={color}
                     handleChange={() => handleChange(index, color)}

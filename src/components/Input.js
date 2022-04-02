@@ -1,6 +1,6 @@
 import { StyledInput } from "./styles/Input.styled";
 
-const Input = ({ value, defaultChecked, handleChange, checked }) => {
+const Input = ({ value, handleChange, checked }) => {
   
   return (
     <StyledInput
@@ -9,7 +9,6 @@ const Input = ({ value, defaultChecked, handleChange, checked }) => {
       checked={checked}
       color={value}
       onChange={handleChange}
-    //  defaultChecked={defaultChecked}
     />
   );
 };

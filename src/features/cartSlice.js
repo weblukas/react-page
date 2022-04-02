@@ -19,11 +19,10 @@ export const cartSlice = createSlice({
       state.nrOfItemsInCart = state.cartItems.length;
     },
     removeItem: (state, action) => {
-      // console.log(action.payload.uid);
       const foundedItem = state.cartItems
         .map(({ uid }) => uid)
         .lastIndexOf(action.payload.uid);
-  
+
       state.cartItems.splice(foundedItem, 1);
       state.total = getTotalPrice(state.cartItems);
       state.nrOfItemsInCart = state.cartItems.length;
@@ -31,7 +30,6 @@ export const cartSlice = createSlice({
     removeItems: (state, action) => {
       state.cartItems = state.cartItems.filter((cartItem) => {
         const removedProductsId = action.payload;
-        console.log(removedProductsId);
         return removedProductsId !== cartItem.uid;
       });
       state.nrOfItemsInCart = state.cartItems.length;

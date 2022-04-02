@@ -10,18 +10,16 @@ import GlobalStyle from "./components/styles/globalStyles";
 function App() {
   return (
     <>
+      <div className="App">
+        <GlobalStyle />
 
-    <div className="App">
-      <GlobalStyle />
-     
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Store />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/premium" element={<PremiumProducts />} />
-      </Routes>
-      
-    </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Store />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/premium" element={<PremiumProducts />} />
+        </Routes>
+      </div>
     </>
   );
 }

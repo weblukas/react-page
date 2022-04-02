@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GoX } from "react-icons/go";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
-import {
-  addItem,
-  removeItem,
-  removeItems,
-} from "../features/cartSlice";
-
+import { addItem, removeItem, removeItems } from "../features/cartSlice";
 
 const findAllMatchingItems = (allItems, searchedItem) =>
   allItems.filter((item) => item.uid === searchedItem.uid).length;
@@ -23,7 +18,6 @@ const CartItemPanel = ({
   image,
   defaultImage,
 }) => {
-
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -38,9 +32,8 @@ const CartItemPanel = ({
     if (sameItemCount <= 0) {
       dispatch(removeItems(uid));
     }
-    console.log(sameItemCount);
   };
- 
+
   const handleRemoveAllSameItems = (uid) => {
     dispatch(removeItems(uid));
   };
@@ -54,7 +47,10 @@ const CartItemPanel = ({
           className="thumbnail"
         />
       </div>
-      <h3 className="item-name"> {isMobile ? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}</h3>
+      <h3 className="item-name">
+        {" "}
+        {isMobile ? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}
+      </h3>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>
@@ -63,7 +59,10 @@ const CartItemPanel = ({
       <div className="item-info">
         <h3> zł {price}</h3>
       </div>
-      <GoX className="deleteBtn" onClick={()=> handleRemoveAllSameItems(uid)} />
+      <GoX
+        className="deleteBtn"
+        onClick={() => handleRemoveAllSameItems(uid)}
+      />
     </StyledCartItemPanel>
   );
 };
