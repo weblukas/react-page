@@ -14,8 +14,9 @@ function App() {
         <GlobalStyle />
         <Navbar />
         <Routes>
-          <Route path="/react-store" element={<Store />}></Route>
-         {/* <Route index element={<Store />} />  */}
+          <Route path="/" element={<Store />} />
+          {/* <Route path="/" element={<Store />} /> */}
+          {/* <Route index element={<Store />} />  */}
           <Route path="/premium" element={<PremiumProducts />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
