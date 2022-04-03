@@ -9,19 +9,15 @@ import GlobalStyle from "./components/styles/globalStyles";
 
 function App() {
   return (
-    <>
-      <div className="App">
-        <GlobalStyle />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Store />} />
-          {/* <Route path="/" element={<Store />} /> */}
-          {/* <Route index element={<Store />} />  */}
-          <Route path="/premium" element={<PremiumProducts />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </div>
-    </>
+    <div className="App">
+      <GlobalStyle />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Store />} />
+        <Route path="/premium" element={<PremiumProducts />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </div>
   );
 }
 

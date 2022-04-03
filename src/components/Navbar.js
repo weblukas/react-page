@@ -21,11 +21,12 @@ const Navbar = () => {
   return (
     <>
       <StyledNavbar>
-        <NavLink to="/react-store">
+        <NavLink to="/">
           <FaDev className="logo-icon" />
         </NavLink>
         {!isMobile ? (
           <ul className="links-list">
+            <NavLink to="/">Home</NavLink>          
             <NavLink to="/premium">Premium products</NavLink>
             <NavLink to="/cart" className="cart-link">
               Cart

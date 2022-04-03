@@ -23,6 +23,7 @@ const ProductSlide = ({
   const [checkedIndex, setCheckedIndex] = useState(null);
 
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
+  const isLaptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
 
   const handleChange = (index, color) => {
     setImgIndex(index);
@@ -68,7 +69,7 @@ const ProductSlide = ({
         <Button addToCart={() => addToCart(product)} />
         <h3 className="price">{price} zł</h3>
         <p className="description">
-          {isMobile
+          {isMobile || isLaptop
             ? `${description.replace(/^(.{150}[^\s]*).*/, "$1")} ...`
             : description}
         </p>
