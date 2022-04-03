@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <>
       <StyledNavbar>
-        <NavLink to="/">
+        <NavLink to="/react-store">
           <FaDev className="logo-icon" />
         </NavLink>
         {!isMobile ? (
