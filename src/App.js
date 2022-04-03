@@ -14,8 +14,8 @@ function App() {
         <GlobalStyle />
 
         <Navbar />
+        <Store />
         <Routes>
-          <Route path="/" element={<Store />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/premium" element={<PremiumProducts />} />
         </Routes>
