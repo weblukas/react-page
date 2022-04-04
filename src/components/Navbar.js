@@ -3,6 +3,7 @@ import { FaDev } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import MenuHamburger from "./MenuHamburger";
 import { StyledNavbar } from "./styles/Navbar.styled";
@@ -14,7 +15,7 @@ const Navbar = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   const nrOfItemsInCart = useSelector((state) => state.cart.nrOfItemsInCart);
-
+  let navigate = useNavigate();
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
   };
@@ -39,9 +40,14 @@ const Navbar = () => {
         ) : (
           <div className="mobile-hamburger-container">
             <div>
-              <FaShoppingCart className="cart-icon" />
+              <FaShoppingCart
+                className="cart-icon"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              />
             </div>
-            <span style={{color: "black"}}>{nrOfItemsInCart}</span>
+            <span style={{ color: "black" }}>{nrOfItemsInCart}</span>
             <MenuHamburger
               handleClick={handleClick}
               openMobileMenu={openMobileMenu}

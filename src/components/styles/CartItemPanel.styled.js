@@ -15,6 +15,7 @@ export const StyledCartItemPanel = styled.div`
 
   @media screen and (max-width: 600px) {
     height: 300px;
+    padding-right: 1.5rem;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 150px 150px;
   }
