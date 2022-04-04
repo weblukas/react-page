@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const StyledProductsSlide = styled.section`
   margin-top: 5rem;
 
+  @media screen and (max-width: 450px){
+    margin-top: 1.5rem;
+  }
+
   .grid-container {
     width: 50vw;
     height: auto;
@@ -26,8 +30,10 @@ export const StyledProductsSlide = styled.section`
       width: 75vw;
     }
 
-    @media screen and (max-width: 350px) {
+    @media screen and (max-width: 450px) {
       width: 100vw;
+      height: auto;
+      grid-template-rows: 100px 200px 100px 50px 200px;
     }
   }
 

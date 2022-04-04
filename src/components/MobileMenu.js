@@ -24,6 +24,9 @@ const MobileMenu = ({ handleClick }) => {
         exit="exit"
       >
         <MobileNavList>
+          <NavLink to="/" className="nav-link" onClick={handleClick}>
+            Home
+          </NavLink>
           <NavLink to="/premium" className="nav-link" onClick={handleClick}>
             Premium products
           </NavLink>

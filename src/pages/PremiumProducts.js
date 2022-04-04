@@ -3,7 +3,11 @@ import { useFetchItemsFromAllStores } from "../helpers/api";
 import ProductSlide from "../components/ProductsSlide";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
+import {MdArrowRight} from "react-icons/md";
+import { MdArrowLeft} from "react-icons/md";
 import "../App.css";
+import { deviceSize } from "../helpers/responsive/deviceSize";
+import useMediaQuery from "../helpers/hooks/useMediaQuery";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,21 +15,23 @@ import Slider from "react-slick";
 
 const PrevArrow = (props) => {
   const { onClick } = props;
-
+  const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   return (
     <div onClick={onClick} className="slick-arrow prev-arrow">
-      <BsArrowLeft />
+     { !isMobile? <BsArrowLeft /> : <MdArrowLeft className="mobile-arrow mobile-prev" /> }
     </div>
   );
 };
 const NextArrow = (props) => {
   const { onClick } = props;
+  const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   return (
     <div onClick={onClick} className="slick-arrow next-arrow">
-      <BsArrowRight />
+      { !isMobile? <BsArrowRight /> : <MdArrowRight className="mobile-arrow mobile-next" /> }
     </div>
   );
 };
+
 
 export const Slidersettings = {
   dots: true,
@@ -35,6 +41,12 @@ export const Slidersettings = {
   slidesToScroll: 1,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
+  responsive: [
+    {breakpoint: 450,
+    settings: {
+      dots: false
+    }}
+  ]
 };
 
 const PremiumProducts = () => {
