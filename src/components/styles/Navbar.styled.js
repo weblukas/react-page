@@ -20,6 +20,10 @@ export const StyledNavbar = styled.div`
   }
   .cart-icon {
     margin-left: 10px;
+
+    @media screen and (max-width: 768px){
+      color: black;
+    }
   }
 
   .cart-link {
@@ -27,6 +31,15 @@ export const StyledNavbar = styled.div`
 
     > * {
       margin-right: 10px;
+    }
+  }
+
+  .mobile-hamburger-container {
+    display: flex;
+    align-items: center;
+
+    &>* {
+      margin-right: 8px;
     }
   }
 `;

@@ -34,6 +34,7 @@ export const StyledProductsSlide = styled.section`
       width: 100vw;
       height: auto;
       grid-template-rows: 100px 200px 100px 50px 200px;
+      box-shadow: none;
     }
   }
 

@@ -18,6 +18,7 @@ export const MobileNavList = styled.ul`
 
 export const NavLink = styled(Link)`
   padding: 2rem;
+  text-align: left;
   text-decoration: none;
   color: #343360;
   font-size: 1.3rem;
