@@ -11,7 +11,7 @@ const Store = () => {
 
   return (
     <>
-      <h1>Fake store items</h1>
+      <h1>Dev Store</h1>
       {isLoading && "Loading..."}
       {error && <h2>Somethig went wrong</h2>}
 
