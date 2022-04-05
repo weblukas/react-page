@@ -4,10 +4,12 @@ import Button from "./Button";
 import Input from "./Input";
 import { StyledProductsSlide } from "./styles/ProductsSlide.styled";
 import { StyledRadioContainer } from "./styles/ProductsSlide.styled";
+import { StyledInputContainer } from "./styles/InputContainer.styled";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
+import '../App.css'
 
 const ProductSlide = ({
   product,
@@ -50,13 +52,23 @@ const ProductSlide = ({
                 const isCurrentChecked =
                   isSomeChecked && checkedIndex === index;
                 return (
-                  <Input
-                    key={index}
-                    name={uid}
-                    checked={isCurrentChecked}
-                    value={color}
-                    handleChange={() => handleChange(index, color)}
-                  />
+                  <StyledInputContainer
+                      
+                      className={isCurrentChecked && 'checked' }
+                      key={index}
+                      name={uid}
+                      isCurrentChecked={isCurrentChecked}
+                      color={color}
+                      onClick={() => handleChange(index, color)}
+                   >
+                   
+                    <Input
+                      key={index}
+                      name={uid}
+          
+                      
+                    />
+                  </StyledInputContainer>
                 );
               })}
           </StyledRadioContainer>

@@ -51,3 +51,8 @@
 .mobile-next {
   left: 200%;
 }
+
+.checked::before {
+  opacity: 1;
+  
+}

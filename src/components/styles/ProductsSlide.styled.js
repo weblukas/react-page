@@ -90,8 +90,10 @@ export const StyledProductsSlide = styled.section`
 
 export const StyledRadioContainer = styled.div`
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 2rem;
+  display: flex;
+  
 
   @media screen and (max-width: 850px) {
     height: 0px;
