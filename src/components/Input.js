@@ -5,10 +5,6 @@ const Input = ({ value, handleChange, checked }) => {
   return (
     <StyledInput
       type="radio"
-      value={value}
-      checked={checked}
-      color={value}
-      onChange={handleChange}
     />
   );
 };

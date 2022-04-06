@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledInputContainer = styled.div`
-   cursor: pointer;
+  cursor: pointer;
 
-   &::after {
+  &::after {
     content: "";
     display: block;
     width: 20px;
@@ -40,10 +40,7 @@ export const StyledInputContainer = styled.div`
     z-index: 10;
   }
 
-
-  &.checked::before{
+  &.checked::before {
     opacity: 1;
-    
   }
-  
-`
+`;

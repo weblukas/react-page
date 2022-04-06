@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../features/cartSlice";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
 import { deviceSize } from "../helpers/responsive/deviceSize";
-import '../App.css'
+
 
 const ProductSlide = ({
   product,
@@ -53,31 +53,21 @@ const ProductSlide = ({
                   isSomeChecked && checkedIndex === index;
                 return (
                   <StyledInputContainer
-                      
-                      className={isCurrentChecked && 'checked' }
-                      key={index}
-                      name={uid}
-                      isCurrentChecked={isCurrentChecked}
-                      color={color}
-                      onClick={() => handleChange(index, color)}
-                   >
-                   
-                    <Input
-                      key={index}
-                      name={uid}
-          
-                      
-                    />
+                    className={isCurrentChecked && "checked"}
+                    key={index}
+                    isCurrentChecked={isCurrentChecked}
+                    color={color}
+                    onClick={() => handleChange(index, color)}
+                  >
+                    <Input key={index} />
                   </StyledInputContainer>
                 );
               })}
           </StyledRadioContainer>
         </div>
-
         <h1 className="title">
           {isMobile ? `${title.replace(/^(.{40}[^\s]*).*/, "$1")}` : title}
         </h1>
-
         <Button addToCart={() => addToCart(product)} />
         <h3 className="price">{price} zł</h3>
         <p className="description">

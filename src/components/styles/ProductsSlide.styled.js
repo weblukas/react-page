@@ -98,7 +98,7 @@ export const StyledRadioContainer = styled.div`
   @media screen and (max-width: 850px) {
     height: 0px;
     position: absolute;
-    top: 180px;
+    top: 140px;
   }
 
   .btn-container {
