@@ -3,8 +3,8 @@ import { useFetchItemsFromAllStores } from "../helpers/api";
 import ProductSlide from "../components/ProductsSlide";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
-import {MdArrowRight} from "react-icons/md";
-import { MdArrowLeft} from "react-icons/md";
+import { MdArrowRight } from "react-icons/md";
+import { MdArrowLeft } from "react-icons/md";
 import "../App.css";
 import { deviceSize } from "../helpers/responsive/deviceSize";
 import useMediaQuery from "../helpers/hooks/useMediaQuery";
@@ -18,7 +18,11 @@ const PrevArrow = (props) => {
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   return (
     <div onClick={onClick} className="slick-arrow prev-arrow">
-     { !isMobile? <BsArrowLeft /> : <MdArrowLeft className="mobile-arrow mobile-prev" /> }
+      {!isMobile ? (
+        <BsArrowLeft />
+      ) : (
+        <MdArrowLeft className="mobile-arrow mobile-prev" />
+      )}
     </div>
   );
 };
@@ -27,11 +31,14 @@ const NextArrow = (props) => {
   const isMobile = useMediaQuery(`(max-width: ${deviceSize.mobile}px)`);
   return (
     <div onClick={onClick} className="slick-arrow next-arrow">
-      { !isMobile? <BsArrowRight /> : <MdArrowRight className="mobile-arrow mobile-next" /> }
+      {!isMobile ? (
+        <BsArrowRight />
+      ) : (
+        <MdArrowRight className="mobile-arrow mobile-next" />
+      )}
     </div>
   );
 };
-
 
 export const Slidersettings = {
   dots: true,
@@ -42,11 +49,13 @@ export const Slidersettings = {
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
   responsive: [
-    {breakpoint: 450,
-    settings: {
-      dots: false
-    }}
-  ]
+    {
+      breakpoint: 450,
+      settings: {
+        dots: false,
+      },
+    },
+  ],
 };
 
 const PremiumProducts = () => {
