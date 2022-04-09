@@ -13,7 +13,7 @@ const Store = () => {
     <>
       <h1>Dev Store</h1>
       {isLoading && "Loading..."}
-      {error && <h2>Somethig went wrong</h2>}
+      {error && <p>Somethig went wrong</p>}
 
       <Slider {...Slidersettings}>
         {isSuccess &&

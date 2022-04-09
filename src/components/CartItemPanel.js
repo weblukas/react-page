@@ -44,7 +44,7 @@ const CartItemPanel = ({
           className="thumbnail"
         />
       </div>
-      <h3 className="item-name">{title.replace(/^(.{40}[^\s]*).*/, "$1")}</h3>
+      <h3 className="item-name">{title.replace(/^(.{50}[^\s]*).*/, "$1")}</h3>
       <div className="item-amount">
         <button onClick={handleRemoveSameItem}>-</button>
         <div>{sameItemCount}</div>

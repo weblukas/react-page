@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const StyledNavbar = styled.div`
+export const StyledNavbar = styled.nav`
   background: linear-gradient(to right, #f6f6f9, #7799f0);
   color: #fff;
   height: 100px;
