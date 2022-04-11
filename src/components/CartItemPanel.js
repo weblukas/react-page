@@ -51,7 +51,7 @@ const CartItemPanel = ({
         <button onClick={handleAddSameItem}>+</button>
       </div>
       <div className="item-info">
-        <h3> zł {price}</h3>
+        <h4 className="item-price"> zł {price}</h4>
       </div>
       <GoX
         className="deleteBtn"

@@ -29,13 +29,13 @@ export const StyledInputContainer = styled.div`
   &::before {
     content: "";
     display: block;
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
     background-color: white;
     opacity: 0;
     border-radius: 50%;
     box-shadow: 5px 5px 10px #cbced5;
-    transform: translate(4px, 37.7px);
+    transform: translate(4.75px, 27.5px);
     transition: all 0.2s ease;
     z-index: 10;
   }

@@ -43,6 +43,10 @@ export const StyledCartItemPanel = styled.div`
     }
   }
 
+  .item-price {
+    font-size: 1.3rem;
+  }
+
   .deleteBtn {
     font-size: 1.5rem;
     cursor: pointer;
