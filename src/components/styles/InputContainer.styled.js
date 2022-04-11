@@ -35,7 +35,7 @@ export const StyledInputContainer = styled.div`
     opacity: 0;
     border-radius: 50%;
     box-shadow: 5px 5px 10px #cbced5;
-    transform: translate(4.75px, 27.5px);
+    transform:-webkit-translate(4.75px, 27.5px);
     transition: all 0.2s ease;
     z-index: 10;
   }
