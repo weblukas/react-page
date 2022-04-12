@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledProductsSlide = styled.section`
   margin-top: 5rem;
 
-  @media screen and (max-width: 450px){
+  @media screen and (max-width: 750px) {
     margin-top: 1.5rem;
   }
 
@@ -93,7 +93,6 @@ export const StyledRadioContainer = styled.div`
   bottom: 1rem;
   left: 2rem;
   display: flex;
-  
 
   @media screen and (max-width: 850px) {
     height: 0px;
