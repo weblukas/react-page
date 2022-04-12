@@ -15,6 +15,7 @@ It's focused on Redux Toolkit and RTK Query
 
 https://weblukas.github.io/react-store/
 ## Demo
+![store-demo](https://user-images.githubusercontent.com/30004725/162940571-2883878a-6e99-417f-a02a-a60e373eb986.gif)
 
 ![] (store-demo.gif)
 ## Setup
