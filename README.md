@@ -16,7 +16,7 @@ It's focused on Redux Toolkit and RTK Query
 https://weblukas.github.io/react-store/
 ## Demo
 
-![] (react-store.gif)
+![] (demo.gif)
 ## Setup
 To run this project, install it locally using npm:
 
